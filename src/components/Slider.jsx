@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 const images = [
-  "/assets/banner1.jpg",
-  "/assets/banner2.jpg",
-  "/assets/banner3.jpg",
+  "src/assets/images/sale-2.jpg",
+  "src/assets/images/sale-1.jpg",
+  "src/assets/images/tum-takilar-1.jpg",
 ];
 
 function Slider() {
