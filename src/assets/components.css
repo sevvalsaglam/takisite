@@ -1,0 +1,53 @@
+/* Ürün Kartı */
+.product-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    background: white;
+    border-radius: 5px;
+  }
+  
+  .product-image {
+    width: 100%;
+    border-radius: 5px;
+  }
+  
+  .product-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .fav-btn, .cart-btn {
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .details-btn {
+    display: block;
+    margin-top: 10px;
+    padding: 5px;
+    background: #000;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  /* Kategoriler */
+  .categories-menu {
+    position: relative;
+  }
+  
+  .categories-list {
+    position: absolute;
+    background: white;
+    list-style: none;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+  

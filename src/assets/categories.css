@@ -1,0 +1,51 @@
+/* Kategoriler Menüsü */
+.categories-menu {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .categories-btn {
+    background: black;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .categories-list {
+    position: absolute;
+    background: white;
+    list-style: none;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: none;
+    min-width: 150px;
+  }
+  
+  .categories-list li {
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .categories-list li:hover {
+    background: #f3f3f3;
+  }
+  
+  /* Açılır menü animasyonu */
+  .categories-menu:hover .categories-list {
+    display: block;
+  }
+  
+  /* Mobil uyumluluk */
+  @media (max-width: 768px) {
+    .categories-list {
+      position: static;
+      box-shadow: none;
+      display: block;
+    }
+  }
+  

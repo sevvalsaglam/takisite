@@ -1,0 +1,43 @@
+/* Genel sayfa stilleri */
+main {
+    padding: 20px;
+  }
+  
+  /* Sepet */
+  .cart-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .cart-items {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .cart-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .cart-summary {
+    background: #f3f3f3;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  /* Ürün Detay Sayfası */
+  .product-page {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .product-large-image {
+    width: 50%;
+  }
+  
+  .product-details {
+    flex: 1;
+  }
+  
