@@ -1,3 +1,4 @@
+/* Header kısmı */
 .header {
   position: fixed;
   top: 0;
@@ -11,6 +12,12 @@
   z-index: 1000;
 }
 
+/* Sayfa içeriğine padding ekleyelim */
+body {
+  padding-top: 60px; /* Header yüksekliğine göre ayar yapabilirsin */
+}
+
+/* Diğer stil kuralları aynı kalacak */
 .logo-container {
   display: flex;
   align-items: center;
@@ -27,7 +34,6 @@
   margin: 0 10px;
   font-size: 1.2rem;
 }
-
 
 .search-bar {
   width: 40%;
@@ -50,7 +56,7 @@
   cursor: pointer;
 }
 
-/* ✅ Mobil Uyum */
+/* Mobil uyumlu stil */
 @media (max-width: 768px) {
   .header {
     flex-direction: column;

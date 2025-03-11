@@ -1,27 +1,32 @@
+/* ✅ Slider Genel Stil */
 .slider {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    overflow: hidden;
-  }
-  
-  .slide-image {
-    width: 100%;
-    border-radius: 10px;
-  }
-  
-  .prev, .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .prev { left: 10px; }
-  .next { right: 10px; }
-  
+  position: relative;
+  width: 100%;
+  height: 500px; /* categories.css dosyasındaki banner yüksekliğiyle uyumlu olacak şekilde ayarlandı */
+  max-height: calc(100vw * 9 / 16); /* Genişlik ile orantılı yükseklik */
+  overflow: hidden;
+  margin-bottom: 40px; /* Slider ve diğer içerik arasındaki boşluğu artırdım */
+}
+
+/* ✅ Slider Resmi */
+.slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Görsellerin tam olarak kapsaması için */
+  border-radius: 10px;
+}
+
+/* ✅ Slider Okları */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }

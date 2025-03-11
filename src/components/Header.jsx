@@ -15,7 +15,7 @@ function Header() {
         <Link to="/profile"><FaUser /></Link>
         <Link to="/favorites"><FaHeart /></Link>
         <Link to="/cart"><FaShoppingCart /></Link>
-        <a href="#categories-section"><FaThLarge /></a>
+        <Link to="/categories"><FaThLarge /></Link>
       </nav>
     </header>
   );
