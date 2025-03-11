@@ -1,39 +1,64 @@
+/* ✅ Sepet Sayfası */
 .cart-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-  }
-  
-  .cart-items {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ✅ Ürünlerin Satır Satır Dizilmesi */
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ Küçük Ürün Görselleri */
+.cart-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* ✅ Sepet Özet Alanı */
+.cart-summary {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* ✅ Ödeme Butonu */
+.checkout-btn {
+  width: 100%;
+  padding: 10px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.checkout-btn:hover {
+  background: #d32f2f;
+}
+
+/* ✅ Mobil Uyumluluk */
+@media (max-width: 768px) {
   .cart-item {
-    display: flex;
-    align-items: center;
-    background: white;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  .cart-summary {
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
-  }
-  
-  .checkout-btn {
-    width: 100%;
-    padding: 10px;
-    background: black;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
+}

@@ -1,43 +1,59 @@
 .header {
-    display: flex;
-    justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #222;
+  padding: 10px 20px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 40px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.nav-icons a {
+  color: white;
+  margin: 0 10px;
+  font-size: 1.2rem;
+}
+
+
+.search-bar {
+  width: 40%;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+}
+
+.nav-icons a {
+  color: white;
+  margin: 0 10px;
+  font-size: 1.4rem;
+}
+
+.logout-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* ✅ Mobil Uyum */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
     align-items: center;
-    background: #222;
-    padding: 15px 30px;
-    color: white;
   }
-  
-  .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-  }
-  
-  .search-bar {
-    width: 40%;
-    padding: 8px;
-    border-radius: 5px;
-    border: none;
-  }
-  
-  .nav-icons a {
-    color: white;
-    margin: 0 10px;
-    font-size: 1.4rem;
-  }
-  
-  .logout-btn {
-    background: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
-  /* ✅ Mobil Uyum */
-  @media (max-width: 768px) {
-    .header {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-  
+}

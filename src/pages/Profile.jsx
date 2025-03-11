@@ -1,8 +1,10 @@
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
+import "../assets/profile.css";
 
 function Profile() {
   const { user, login, logout } = useAuth();
+  const [isRegistering, setIsRegistering] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
     surname: "",
@@ -24,19 +26,26 @@ function Profile() {
     <main className="profile-page">
       {!user ? (
         <>
-          <h2>Giriş Yap veya Kayıt Ol</h2>
+          <h2>{isRegistering ? "Kayıt Ol" : "Giriş Yap"}</h2>
           <form onSubmit={handleSubmit} className="profile-form">
-            <input type="text" name="name" placeholder="Adınız" onChange={handleChange} required />
-            <input type="text" name="surname" placeholder="Soyadınız" onChange={handleChange} required />
+            {isRegistering && (
+              <>
+                <input type="text" name="name" placeholder="Adınız" onChange={handleChange} required />
+                <input type="text" name="surname" placeholder="Soyadınız" onChange={handleChange} required />
+                <textarea name="address" placeholder="Adresiniz" onChange={handleChange} required></textarea>
+              </>
+            )}
             <input type="email" name="email" placeholder="E-posta" onChange={handleChange} required />
             <input type="password" name="password" placeholder="Şifre" onChange={handleChange} required />
-            <textarea name="address" placeholder="Adresiniz" onChange={handleChange} required></textarea>
-            <button type="submit">Giriş Yap / Kayıt Ol</button>
+            <button type="submit">{isRegistering ? "Kayıt Ol" : "Giriş Yap"}</button>
           </form>
+          <p onClick={() => setIsRegistering(!isRegistering)} className="toggle-form">
+            {isRegistering ? "Zaten üye misin? Giriş Yap" : "Hesabın yok mu? Kayıt Ol"}
+          </p>
         </>
       ) : (
         <>
-          <h2>Profilim</h2>
+          <h2>Hesabım</h2>
           <p><strong>Ad:</strong> {user.name}</p>
           <p><strong>Soyad:</strong> {user.surname}</p>
           <p><strong>Email:</strong> {user.email}</p>

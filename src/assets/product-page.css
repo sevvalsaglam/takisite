@@ -1,0 +1,27 @@
+.product-page {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 50px auto;
+  }
+  
+  .product-large-image {
+    width: 50%;
+    border-radius: 10px;
+  }
+  
+  .product-details {
+    flex: 1;
+  }
+  
+  .product-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .fav-btn.active {
+    color: red;
+  }
+  

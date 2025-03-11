@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function CategoriesMenu() {
   const [isOpen, setIsOpen] = useState(false);
-  const categories = ["Küpe", "Bileklik", "Kolye", "Yüzük", "Piercing", "Broş", "Halhal"];
+  const categories = ["Küpe", "Bileklik", "Kolye", "Yüzük", "Piercing", "Broş", "Halhal", "Tüm Ürünler"];
 
   return (
     <div className="categories-menu">
