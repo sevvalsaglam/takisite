@@ -6,13 +6,13 @@ import "../assets/Categories.css";
 
 // Banner görselleri
 import firstBannerImage from "../assets/images/tum-takilar-1.jpg";
-import kupeBanner from "../assets/images/kupe-banner-3.jpg";
-import bileklikBanner from "../assets/images/bileklik-banner-1.jpg";
-import kolyeBanner from "../assets/images/kolye-banner-3.jpg";
-import yuzukBanner from "../assets/images/yuzuk-banner-2.jpg";
-import brosBanner from "../assets/images/bros-banner-1.jpg";
-import piercingBanner from "../assets/images/piercing-banner-2.jpg";
-import halhalBanner from "../assets/images/halhal-banner-1.jpg";
+import kupeBanner from "../assets/images/kupe-banner.jpg";
+import bileklikBanner from "../assets/images/bileklik-banner.jpg";
+import kolyeBanner from "../assets/images/kolye-banner.jpg";
+import yuzukBanner from "../assets/images/yuzuk-banner.jpg";
+import brosBanner from "../assets/images/bros-banner.jpg";
+import piercingBanner from "../assets/images/piercing-banner.jpg";
+import halhalBanner from "../assets/images/halhal-banner.jpg";
 
 const categories = [
   { name: "Küpe", slug: "küpe" },

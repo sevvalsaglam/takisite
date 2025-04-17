@@ -5,15 +5,15 @@ import allProducts from "../data/allProducts";
 
 // Slider görselleri
 const firstSliderImages = [
-  "src/assets/images/sale-2.jpg",
-  "src/assets/images/sale-1.jpg",
-  "src/assets/images/tum-takilar-1.jpg"
+  "src/assets/images/banner-foto-3.jpg",
+  "src/assets/images/banner-foto-2.jpg",
+  "src/assets/images/banner-foto-4.jpg"
 ];
 
 const secondSliderImages = [
-  "src/assets/images/sale-2.jpg",
-  "src/assets/images/sale-1.jpg",
-  "src/assets/images/tum-takilar-1.jpg"
+  "src/assets/images/banner-foto-5.jpg",
+  "src/assets/images/banner-foto-6.jpg",
+  "src/assets/images/banner-foto-7.jpg"
 ];
 
 function HomePage() {
