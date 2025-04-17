@@ -2,8 +2,7 @@
 .slider {
   position: relative;
   width: 100%;
-  height: 500px; /* categories.css dosyasındaki banner yüksekliğiyle uyumlu olacak şekilde ayarlandı */
-  max-height: calc(100vw * 9 / 16); /* Genişlik ile orantılı yükseklik */
+  height: 100vh; /* Sayfa yüksekliğine eşit olarak ayarlandı */
   overflow: hidden;
   margin-bottom: 40px; /* Slider ve diğer içerik arasındaki boşluğu artırdım */
 }
@@ -30,3 +29,43 @@
 
 .prev { left: 10px; }
 .next { right: 10px; }
+
+/* 📐 Slider Yüksekliği Artırıldı */
+.slider-container {
+  width: 100%;
+}
+
+/* Üst banner özel ayarı */
+.top-slider {
+  margin-top: 0; /* Header ile boşluk olmasın */
+}
+
+/* Aralara boşluk */
+.spacer-between-banner-and-title {
+  height: 60px;
+}
+
+/* Alt banner öncesi ekstra boşluk */
+.spacer-above-second-banner {
+  height: 100px;
+}
+
+/* Yeni Ürünler başlığı */
+h2 {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+/* Ürün listesi boşlukları */
+.product-section .product-list {
+  row-gap: 50px;
+}
+
+/* Mobil uyum */
+@media (max-width: 768px) {
+  .spacer-between-banner-and-title,
+  .spacer-above-second-banner {
+    height: 40px;
+  }
+}

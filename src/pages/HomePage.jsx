@@ -3,6 +3,7 @@ import ProductList from "../components/ProductList";
 import allProducts from "../data/allProducts";
 import { useEffect, useState } from "react";
 
+// 📸 İkinci slider görsellerini import et
 const secondSliderImages = [
   "src/assets/images/sale-2.jpg",
   "src/assets/images/sale-1.jpg",
@@ -24,12 +25,10 @@ function HomePage() {
 
   return (
     <main className="homepage">
-      {/* ÜST BANNER */}
-      <div className="slider-container top-slider">
+      <div className="slider-container">
         <Slider images={firstSliderImages} />
       </div>
 
-      {/* Banner ile Ürünler Arası Boşluk */}
       <div className="spacer-between-banner-and-title"></div>
 
       <h2>Yeni Ürünler</h2>
@@ -38,13 +37,10 @@ function HomePage() {
         <ProductList products={randomProducts} itemsPerRow={4} />
       </div>
 
-      {/* ALT BANNER */}
-      <div className="spacer-above-second-banner"></div>
       <div className="slider-container second-slider-container">
         <Slider images={secondSliderImages} />
       </div>
 
-      {/* Alt Banner ile Ürün Arası Boşluk */}
       <div className="spacer-between-banner-and-title"></div>
 
       <h2>Çok Satanlar</h2>

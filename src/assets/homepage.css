@@ -1,45 +1,94 @@
+/* ✅ Ana Sayfa Genel Stil */
 .homepage {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
 
-/* Bannerlar */
+/* ✅ Slider ve Yeni Ürünler Arasındaki Boşluk */
 .slider-container {
-  width: 100%;
+  margin-bottom: 0; /* artık ayrı spacer ile kontrol edeceğiz */
 }
 
-/* Üst banner özel ayarı */
-.top-slider {
-  margin-top: -20px; /* Header ile boşluk olmasın */
-}
-
-/* Aralara boşluk */
-.spacer-between-banner-and-title {
-  height: 60px;
-}
-
-/* Alt banner öncesi ekstra boşluk */
-.spacer-above-second-banner {
-  height: 100px;
-}
-
-/* Yeni Ürünler başlığı */
+/* ✅ Yeni Ürünler Başlık */
 h2 {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 60px; /* Başlıklara üst boşluk */
   margin-bottom: 30px;
 }
 
-/* Ürün listesi boşlukları */
-.product-section .product-list {
-  row-gap: 50px;
+/* 🔥 Eklenen boşluk alanı */
+.spacer-between-banner-and-title {
+  height: 60px; /* Araya daha belirgin boşluk */
+
 }
 
-/* Mobil uyum */
+/* ✅ Ürünler kısmı - satır arası boşluk */
+.product-section .product-list {
+  row-gap: 50px; /* varsayılan row-gap’i artırdık */
+
+}
+
+/* ✅ Kategori Banner */
+#categories-section {
+  margin-top: 50px;
+}
+
+.banner-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.category-box {
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.category-title {
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 14px;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.homepage-banner {
+  width: 100%;
+  height: 400px;
+  margin-top: 60px;
+  background-image: url("/assets/images/homepage-banner.jpg"); /* Bu görseli sen değiştireceksin */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.homepage-banner-content {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px 40px;
+  border-radius: 8px;
+  color: white;
+  font-size: 28px;
+  text-align: center;
+}
+.second-slider-container {
+  margin-top: 60px;
+}
+
+
+
+/* ✅ Mobil Uyumluluk */
 @media (max-width: 768px) {
-  .spacer-between-banner-and-title,
-  .spacer-above-second-banner {
-    height: 40px;
+  .category-box {
+    width: 100px;
+    height: 100px;
   }
 }
