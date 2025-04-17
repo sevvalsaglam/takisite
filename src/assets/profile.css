@@ -1,29 +1,34 @@
 .profile-page {
   max-width: 400px;
-  margin: 100px auto 0 auto; /* Header'dan dolayı yukarı boşluk bırakıldı */
+  margin: 120px auto 0;
   padding: 20px;
   background: white;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.profile-page .logo {
+  width: 150px;
+  height: auto;
+  margin: 0 auto 20px;
 }
 
 .profile-form input,
 .profile-form textarea {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 6px;
   border: 1px solid #ccc;
 }
 
 .profile-form button {
   width: 100%;
-  padding: 10px;
-  background: black;
+  padding: 12px;
+  background: #1e2534;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
-
-  

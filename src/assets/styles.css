@@ -7,8 +7,14 @@
   }
   
   body {
-    background-color: #f9f9f9;
     color: #333;
+    background-color: #eee9e5; /* Açık zemin rengi (marka rengi) */
+    background-image: url("src/assets/images/taki-dunyasi-logo.png"); /* ✅ 'src/' olmadan kullanılmalı */
+    background-repeat: repeat;
+    background-size: 120px 120px; /* Desen boyutu (dilediğinde değiştirebilirsin) */
+    background-position: center;
+    background-attachment: fixed;
+    background-blend-mode: lighten; /* Daha yumuşak görünüm */
   }
   
   .container {

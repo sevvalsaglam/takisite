@@ -1,12 +1,6 @@
 import { useState } from "react";
 
-const images = [
-  "src/assets/images/sale-2.jpg",
-  "src/assets/images/sale-1.jpg",
-  "src/assets/images/tum-takilar-1.jpg",
-];
-
-function Slider() {
+function Slider({ images }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {

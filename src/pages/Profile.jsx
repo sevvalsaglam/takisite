@@ -1,6 +1,8 @@
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
 import "../assets/profile.css";
+import logo from "../assets/images/taki-dunyasi-logo-2.png";
+
 
 function Profile() {
   const { user, login, logout } = useAuth();
@@ -26,7 +28,9 @@ function Profile() {
     <main className="profile-page">
       {!user ? (
         <>
+        <img src={logo} alt="Takı Dünyası" className="logo" />
           <h2>{isRegistering ? "Kayıt Ol" : "Giriş Yap"}</h2>
+        
           <form onSubmit={handleSubmit} className="profile-form">
             {isRegistering && (
               <>
