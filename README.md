@@ -1,12 +1,19 @@
-# React + Vite
+💎 Takı Satış Web Sitesi 💍
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bir takı satış platformu için geliştirilmiş modern ve dinamik bir web uygulaması. Kullanıcıların şık takılar arasında gezinebilmesi, favorilerine eklemesi, sepetlerine ürün eklemesi ve ürünlerin detaylarını incelemesi mümkün. Uygulama React ve Vite kullanılarak geliştirilmiştir.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🚀 Özellikler
 
-## Expanding the ESLint configuration
+Kategorilere Göre Ürünler: Kullanıcılar, farklı takı kategorilerine göz atabilirler (Küpe, Bileklik, Kolye vb.).
+Ürün Detayları: Ürünler hakkında detaylı bilgiye sahip olabilirsiniz.
+Favorilere Ekleme: Kullanıcılar favorilerine takı ekleyebilir ve kolayca erişebilirler.
+Sepet Özelliği: Kullanıcılar seçtikleri ürünleri sepete ekleyebilir ve satın almak için işlem yapabilirler.
+Responsive Tasarım: Farklı cihazlarda (telefon, tablet, masaüstü) düzgün çalışan modern bir arayüz.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🔧 Teknolojiler
+
+React: Kullanıcı arayüzü ve dinamik bileşenler için React.
+Vite: Geliştirme ve yapılandırma süreçlerini hızlandıran modern bir araç.
+React Router: Sayfalar arasında geçiş için yönlendirme.
+Context API: Uygulama durumu yönetimi (Sepet, Favoriler, Kullanıcı Girişi).
