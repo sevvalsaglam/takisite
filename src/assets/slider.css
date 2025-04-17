@@ -1,21 +1,32 @@
-/* ✅ Slider Genel Stil */
+/* Ortak Slider stil */
 .slider {
   position: relative;
   width: 100%;
-  height: 100vh; /* Sayfa yüksekliğine eşit olarak ayarlandı */
   overflow: hidden;
-  margin-bottom: 40px; /* Slider ve diğer içerik arasındaki boşluğu artırdım */
+  margin-bottom: 60px; /* 🔧 Alttan boşluk eklendi */
 }
 
-/* ✅ Slider Resmi */
+/* Tam ekran slider */
+.fullscreen-slider {
+  height: 100vh;
+  margin-bottom: 60px; /* 🔧 Alttan boşluk eklendi */
+}
+
+/* Normal banner */
+.standard-slider {
+  height: 400px;
+  margin-top: 60px; /* 🔧 Üstten boşluk eklendi */
+  margin-bottom: 60px; /* 🔧 Alttan boşluk eklendi */
+}
+
+/* Slider görseli */
 .slide-image {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Görsellerin tam olarak kapsaması için */
-  border-radius: 10px;
+  object-fit: cover;
 }
 
-/* ✅ Slider Okları */
+/* Navigasyon okları */
 .prev, .next {
   position: absolute;
   top: 50%;
@@ -24,48 +35,35 @@
   color: white;
   border: none;
   padding: 10px;
+  font-size: 22px;
+  border-radius: 50%;
   cursor: pointer;
+  z-index: 10;
 }
 
-.prev { left: 10px; }
-.next { right: 10px; }
-
-/* 📐 Slider Yüksekliği Artırıldı */
-.slider-container {
-  width: 100%;
+.prev {
+  left: 20px;
 }
 
-/* Üst banner özel ayarı */
-.top-slider {
-  margin-top: 0; /* Header ile boşluk olmasın */
-}
-
-/* Aralara boşluk */
-.spacer-between-banner-and-title {
-  height: 60px;
-}
-
-/* Alt banner öncesi ekstra boşluk */
-.spacer-above-second-banner {
-  height: 100px;
-}
-
-/* Yeni Ürünler başlığı */
-h2 {
-  text-align: center;
-  margin-top: 40px;
-  margin-bottom: 30px;
-}
-
-/* Ürün listesi boşlukları */
-.product-section .product-list {
-  row-gap: 50px;
+.next {
+  right: 20px;
 }
 
 /* Mobil uyum */
 @media (max-width: 768px) {
-  .spacer-between-banner-and-title,
-  .spacer-above-second-banner {
-    height: 40px;
+  .fullscreen-slider {
+    height: 85vh;
+    margin-bottom: 40px;
+  }
+
+  .standard-slider {
+    height: 280px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  .prev, .next {
+    padding: 8px;
+    font-size: 18px;
   }
 }

@@ -1,35 +1,55 @@
-/* ✅ Ana Sayfa Genel Stil */
+/* === Ana Sayfa Düzeni === */
 .homepage {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 20px;
 }
 
-/* ✅ Slider ve Yeni Ürünler Arasındaki Boşluk */
-.slider-container {
-  margin-bottom: 0; /* artık ayrı spacer ile kontrol edeceğiz */
-}
-
-/* ✅ Yeni Ürünler Başlık */
+/* === Başlıklar === */
 h2 {
   text-align: center;
-  margin-top: 60px; /* Başlıklara üst boşluk */
+  margin-top: 60px;
   margin-bottom: 30px;
+  font-size: 28px;
+  color: #1e2534;
 }
 
-/* 🔥 Eklenen boşluk alanı */
-.spacer-between-banner-and-title {
-  height: 60px; /* Araya daha belirgin boşluk */
-
-}
-
-/* ✅ Ürünler kısmı - satır arası boşluk */
+/* === Ürünler === */
 .product-section .product-list {
-  row-gap: 50px; /* varsayılan row-gap’i artırdık */
-
+  row-gap: 50px;
 }
 
-/* ✅ Kategori Banner */
+/* === Slider Genel Stil === */
+.slider-container {
+  width: 100%;
+}
+
+/* === Üst Slider Tam Ekran === */
+.top-slider {
+  margin-top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* === Alt Slider === */
+.second-slider-container {
+  margin-top: 0;
+}
+
+/* === Boşluklar === */
+.spacer-between-banner-and-title {
+  height: 60px;
+}
+
+.spacer-above-second-banner {
+  height: 80px;
+}
+
+.spacer-below-second-banner {
+  height: 80px;
+}
+
+/* === Kategori Banner === */
 #categories-section {
   margin-top: 50px;
 }
@@ -59,36 +79,21 @@ h2 {
   text-decoration: none;
   border-radius: 5px;
 }
-.homepage-banner {
-  width: 100%;
-  height: 400px;
-  margin-top: 60px;
-  background-image: url("/assets/images/homepage-banner.jpg"); /* Bu görseli sen değiştireceksin */
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.homepage-banner-content {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 20px 40px;
-  border-radius: 8px;
-  color: white;
-  font-size: 28px;
-  text-align: center;
-}
-.second-slider-container {
-  margin-top: 60px;
-}
-
-
-
-/* ✅ Mobil Uyumluluk */
+/* === Mobil Uyum === */
 @media (max-width: 768px) {
   .category-box {
     width: 100px;
     height: 100px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .spacer-between-banner-and-title,
+  .spacer-above-second-banner,
+  .spacer-below-second-banner {
+    height: 40px;
   }
 }

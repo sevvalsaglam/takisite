@@ -1,14 +1,18 @@
 .product-page {
   display: flex;
-  align-items: flex-start;
+  align-items: center; /* ✅ Ortadan hizalama */
   justify-content: center;
   gap: 30px;
   max-width: 1000px;
   flex-wrap: wrap;
-  margin: 80px auto;
+  margin: 120px auto 80px; /* ✅ Yukarıdan fazladan boşluk verildi */
   row-gap: 40px;
   padding: 0 20px;
 }
+.product-large-image {
+  margin-top: 10px; /* isteğe bağlı görsel altına boşluk */
+}
+
 
 /* Ürün Görseli */
 .product-large-image {
