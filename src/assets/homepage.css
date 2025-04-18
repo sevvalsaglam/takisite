@@ -80,6 +80,13 @@ h2 {
   text-decoration: none;
   border-radius: 5px;
 }
+.main-wrapper {
+  padding-top: 80px;
+}
+
+.homepage.no-header-padding {
+  padding-top: 0 !important;
+}
 
 /* === Mobil Uyum === */
 @media (max-width: 768px) {

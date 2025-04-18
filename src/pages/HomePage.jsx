@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Slider from "../components/Slider";
 import ProductList from "../components/ProductList";
+import CategoryGrid from "../components/CategoryGrid";
+import VideoBanner from "../components/VideoBanner";
 import allProducts from "../data/allProducts";
 
 // Slider görselleri
@@ -25,11 +27,17 @@ function HomePage() {
   }, []);
 
   return (
-    <main className="homepage">
+    <main className="homepage no-header-padding"> {/* ✅ Burada özel class ekledik */}
       {/* ✅ Tam ekran banner */}
       <div className="slider-container">
         <Slider images={firstSliderImages} fullScreen={true} />
       </div>
+
+      {/* ✅ Kategoriler grid */}
+      <CategoryGrid />
+
+      {/* ✅ Video Banner */}
+      <VideoBanner src="src/assets/images/banner-video.mp4" />
 
       <h2>Yeni Ürünler</h2>
       <div className="product-section">

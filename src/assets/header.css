@@ -1,44 +1,69 @@
-/* ===== Header ===== */
+/* ==== GENEL HEADER ==== */
 .header {
   position: fixed;
   top: 0;
   width: 100%;
   background: #1e2534;
-  padding: 10px 20px;
   color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   z-index: 1000;
 }
 
+.header-inner {
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
 .logo-container {
+  position: relative;
+  height: 100%;
   display: flex;
   align-items: center;
 }
 
 .logo {
-  height: 52px;
-  width: 52px;
-  border-radius: 50%; /* ✅ Yuvarlak görünüm */
-  object-fit: cover;   /* Görselin oranı bozulmasın */
-  margin-right: 15px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 2;
 }
 
-
 .search-bar {
-  width: 40%;
-  padding: 8px;
-  border-radius: 5px;
+  width: 300px;
+  max-width: 100%;
+  padding: 7px 12px;
   border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+/* ✅ Logo yazısı (marka adı) */
+.logo-text {
+  margin-left: 110px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #eee9e5;
+}
+
+/* Desktop ikonlar */
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .nav-icons a {
   color: white;
-  margin: 0 10px;
   font-size: 1.4rem;
 }
 
+/* Sepet sayacı */
 .cart-icon-wrapper {
   position: relative;
 }
@@ -53,20 +78,49 @@
   padding: 2px 6px;
   border-radius: 50%;
   font-weight: bold;
-  line-height: 1;
 }
 
-.logout-btn {
-  background: #95713b;
-  color: white;
+/* Menü ikonu sadece mobilde */
+.menu-toggle {
+  font-size: 1.6rem;
+  background: none;
   border: none;
-  padding: 5px 10px;
+  color: white;
   cursor: pointer;
 }
 
+/* Mobil navigasyon menüsü */
+.mobile-nav {
+  background-color: #eee9e5;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 20px;
+}
+
+.mobile-nav a {
+  color: #1e2534;
+  font-weight: bold;
+  margin: 8px 0;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Responsive kontrol */
+.desktop-only {
+  display: flex;
+}
+
+.mobile-only {
+  display: none;
+}
+
 @media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    align-items: center;
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: block;
   }
 }

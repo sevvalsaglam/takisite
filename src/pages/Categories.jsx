@@ -38,13 +38,24 @@ const banners = [
 function Categories() {
   const { category } = useParams();
   const [currentBanner, setCurrentBanner] = useState(0);
+  const [sortOption, setSortOption] = useState("default");
 
-  // Seçilen kategoriye göre filtreleme
-  const filteredProducts = category
+  // Kategoriye göre filtreleme
+  let filteredProducts = category
     ? allProducts.filter((product) => product.category === category)
     : allProducts;
 
-  // Banner geçiş fonksiyonları
+  // ✅ Sıralama işlemleri
+  if (sortOption === "price-asc") {
+    filteredProducts = [...filteredProducts].sort((a, b) => a.price - b.price);
+  } else if (sortOption === "price-desc") {
+    filteredProducts = [...filteredProducts].sort((a, b) => b.price - a.price);
+  } else if (sortOption === "random") {
+    filteredProducts = [...filteredProducts].sort(() => 0.5 - Math.random());
+  } else if (sortOption === "rating") {
+    filteredProducts = [...filteredProducts].sort(() => 0.5 - Math.random()); // Dummy sıralama
+  }
+
   const nextBanner = () => {
     setCurrentBanner((prev) => (prev + 1) % banners.length);
   };
@@ -54,10 +65,8 @@ function Categories() {
   };
 
   return (
-    <main>
-      {/* Banner Alanı */}
+    <main className="category-page">
       <div className="banner-container">
-        {/* İlk banner (kategori butonları ve resim) */}
         {banners[currentBanner].type === "grid" ? (
           <div className="first-banner" style={{ backgroundImage: `url(${banners[currentBanner].image})` }}>
             <div className="category-grid">
@@ -69,21 +78,31 @@ function Categories() {
             </div>
           </div>
         ) : (
-          /* Diğer bannerlar (resimli) */
           <div className="image-banner" style={{ backgroundImage: `url(${banners[currentBanner].image})` }}>
             <Link to={`/categories/${banners[currentBanner].category}`} className="category-button">
               {banners[currentBanner].category.toUpperCase()}
             </Link>
           </div>
         )}
-        {/* Banner geçiş butonları */}
         <button className="prev-button" onClick={prevBanner}>&lt;</button>
         <button className="next-button" onClick={nextBanner}>&gt;</button>
       </div>
 
-      <h1>{category ? category.toUpperCase() : "Tüm Ürünler"}</h1>
+      <div className="category-header">
+        <h1>{category ? category.toUpperCase() : "Tüm Ürünler"}</h1>
 
-      {/* Kategorilere göre ürün listesi */}
+        {/* ✅ Sıralama Dropdown */}
+        <div className="sort-dropdown">
+          <select onChange={(e) => setSortOption(e.target.value)} value={sortOption}>
+            <option value="default">Sıralama Seçin</option>
+            <option value="price-asc">Fiyata Göre Artan</option>
+            <option value="price-desc">Fiyata Göre Azalan</option>
+            <option value="random">En Çok Satanlar</option>
+            <option value="rating">Puanına Göre</option>
+          </select>
+        </div>
+      </div>
+
       {filteredProducts.length > 0 ? (
         <ProductList products={filteredProducts} />
       ) : (

@@ -1,26 +1,50 @@
-.profile-page {
-  max-width: 400px;
-  margin: 120px auto 0;
-  padding: 20px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+/* Sayfa genel düzeni */
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 120px;
+  padding-bottom: 60px;
+}
+
+/* Kart görünüm */
+.profile-card {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  padding: 40px 30px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
   text-align: center;
+  position: relative;
 }
 
-.profile-page .logo {
-  width: 150px;
-  height: auto;
+/* Logo */
+.profile-card .logo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
   margin: 0 auto 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
+/* Başlık */
+.profile-card h2 {
+  margin-bottom: 25px;
+  font-size: 22px;
+  color: #1e2534;
+}
+
+/* Form */
 .profile-form input,
 .profile-form textarea {
   width: 100%;
   padding: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   border-radius: 6px;
   border: 1px solid #ccc;
+  font-size: 14px;
 }
 
 .profile-form button {
@@ -29,6 +53,58 @@
   background: #1e2534;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
+  font-weight: bold;
   cursor: pointer;
+  font-size: 15px;
+}
+
+.toggle-form {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #494848;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.logout-btn {
+  background: #d32f2f;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.profile-page {
+  max-width: 400px;
+  margin: 120px auto 0;
+  padding: 30px 20px 40px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  position: relative;
+}
+
+/* ✅ Header’daki logo yerine bu kullanılacak */
+.profile-logo {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+
+@media (max-width: 768px) {
+  .profile-wrapper {
+    padding: 100px 20px 40px;
+  }
+
+  .profile-card .logo {
+    width: 100px;
+    height: 100px;
+  }
 }

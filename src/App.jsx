@@ -18,18 +18,23 @@ function App() {
       <CartProvider>
         <FavoritesProvider>
           <Router>
-            <Header />
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/favorites" element={<Favorites />} />
-              <Route path="/cart" element={<ShoppingCart />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/categories" element={<Categories />} /> {/* Kategoriler için genel sayfa */}
-              <Route path="/categories/:category" element={<Categories />} /> {/* Kategoriye özgü sayfa */}
-              <Route path="/product/:id" element={<ProductPage />} />
-            </Routes>
-            <Footer />
-          </Router>
+  <Header />
+
+  <div className={`main-wrapper ${window.location.pathname === "/" ? "no-header-space" : ""}`}>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/favorites" element={<Favorites />} />
+      <Route path="/cart" element={<ShoppingCart />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/categories" element={<Categories />} />
+      <Route path="/categories/:category" element={<Categories />} />
+      <Route path="/product/:id" element={<ProductPage />} />
+    </Routes>
+  </div>
+
+  <Footer />
+</Router>
+
         </FavoritesProvider>
       </CartProvider>
     </AuthProvider>

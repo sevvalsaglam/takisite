@@ -97,6 +97,22 @@
   background: rgba(0, 0, 0, 0.8);
 }
 
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  margin: 40px 0 20px;
+}
+
+.sort-dropdown select {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+
 /* ✅ Mobil Uyumluluk */
 @media (max-width: 768px) {
   .category-grid {
