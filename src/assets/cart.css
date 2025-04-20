@@ -1,9 +1,11 @@
+/* Cart container, container flex düzeniyle hizalanmış */
 .cart-container {
   display: flex;
   flex-direction: column;
   gap: 30px;
   max-width: 900px;
   margin: 0 auto;
+  flex-grow: 1; /* Sayfanın boş kısmını doldurmasını sağlar */
 }
 
 .cart-items {

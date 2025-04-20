@@ -4,6 +4,7 @@
   width: 100%;
   overflow: hidden;
   margin-bottom: 60px;
+  
 }
 
 /* Tam Ekran Slider */
@@ -23,7 +24,7 @@
 .slide-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit:cover;
 }
 
 /* Navigasyon Okları */
@@ -65,5 +66,9 @@
   .prev, .next {
     padding: 8px;
     font-size: 18px;
+  }
+  .fullscreen-slider {
+    height:fit-content;
+    margin-bottom: 60px;
   }
 }

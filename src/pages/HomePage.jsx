@@ -5,7 +5,6 @@ import CategoryGrid from "../components/CategoryGrid";
 import VideoBanner from "../components/VideoBanner";
 import allProducts from "../data/allProducts";
 
-// Slider görselleri
 const firstSliderImages = [
   "src/assets/images/banner-foto-3.jpg",
   "src/assets/images/banner-foto-2.jpg",
@@ -27,16 +26,13 @@ function HomePage() {
   }, []);
 
   return (
-    <main className="homepage no-header-padding"> {/* ✅ Burada özel class ekledik */}
-      {/* ✅ Tam ekran banner */}
+    <main className="homepage no-header-padding">
       <div className="slider-container">
         <Slider images={firstSliderImages} fullScreen={true} />
       </div>
 
-      {/* ✅ Kategoriler grid */}
       <CategoryGrid />
 
-      {/* ✅ Video Banner */}
       <VideoBanner src="src/assets/images/banner-video.mp4" />
 
       <h2>Yeni Ürünler</h2>
@@ -44,7 +40,6 @@ function HomePage() {
         <ProductList products={randomProducts} itemsPerRow={4} />
       </div>
 
-      {/* ✅ Alt banner (standart yükseklik) */}
       <div className="slider-container second-slider-container">
         <Slider images={secondSliderImages} />
       </div>

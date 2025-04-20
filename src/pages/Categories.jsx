@@ -4,7 +4,6 @@ import ProductList from "../components/ProductList";
 import allProducts from "../data/allProducts";
 import "../assets/Categories.css";
 
-// Banner görselleri
 import firstBannerImage from "../assets/images/tum-takilar-1.jpg";
 import kupeBanner from "../assets/images/kupe-banner.jpg";
 import bileklikBanner from "../assets/images/bileklik-banner.jpg";
@@ -40,12 +39,10 @@ function Categories() {
   const [currentBanner, setCurrentBanner] = useState(0);
   const [sortOption, setSortOption] = useState("default");
 
-  // Kategoriye göre filtreleme
   let filteredProducts = category
     ? allProducts.filter((product) => product.category === category)
     : allProducts;
 
-  // ✅ Sıralama işlemleri
   if (sortOption === "price-asc") {
     filteredProducts = [...filteredProducts].sort((a, b) => a.price - b.price);
   } else if (sortOption === "price-desc") {
@@ -53,7 +50,7 @@ function Categories() {
   } else if (sortOption === "random") {
     filteredProducts = [...filteredProducts].sort(() => 0.5 - Math.random());
   } else if (sortOption === "rating") {
-    filteredProducts = [...filteredProducts].sort(() => 0.5 - Math.random()); // Dummy sıralama
+    filteredProducts = [...filteredProducts].sort(() => 0.5 - Math.random()); 
   }
 
   const nextBanner = () => {
@@ -91,7 +88,6 @@ function Categories() {
       <div className="category-header">
         <h1>{category ? category.toUpperCase() : "Tüm Ürünler"}</h1>
 
-        {/* ✅ Sıralama Dropdown */}
         <div className="sort-dropdown">
           <select onChange={(e) => setSortOption(e.target.value)} value={sortOption}>
             <option value="default">Sıralama Seçin</option>

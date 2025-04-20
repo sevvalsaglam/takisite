@@ -3,6 +3,9 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .header {
@@ -35,9 +38,5 @@ body {
   padding: 10px;
   background: #222;
   color: white;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+  margin-top: auto; 
 }
-
-

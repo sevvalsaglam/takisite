@@ -7,7 +7,6 @@ function ProductCard({ product }) {
   const { cart, addToCart } = useCart();
   const { favorites, toggleFavorite } = useFavorites();
 
-  // ✅ Sepette veya favorilerde mi?
   const isFavorite = favorites.some((item) => item.id === product.id);
   const isInCart = cart.some((item) => item.id === product.id);
 

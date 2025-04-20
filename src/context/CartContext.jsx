@@ -43,7 +43,6 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  // ✅ Sepeti tamamen temizle
   const clearCart = () => {
     setCart([]);
     localStorage.removeItem("cart");
@@ -56,7 +55,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         updateQuantity,
-        clearCart, // ✅ Buraya eklendi
+        clearCart, 
       }}
     >
       {children}

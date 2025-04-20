@@ -3,7 +3,6 @@ import categories from "../data/categoriesData";
 import "../assets/category-grid.css";
 import allProducts from "../data/allProducts";
 
-// Her kategoriye özel yamuk şekil verelim
 const clipPaths = [
   "polygon(0 0, 100% 10%, 95% 100%, 0% 90%)",
   "polygon(5% 0, 100% 0, 95% 100%, 0% 100%)",
@@ -16,7 +15,6 @@ const clipPaths = [
 ];
 
 function CategoryGrid() {
-  // Outlet ürünleri
   const getOutletSlug = (slug) => {
     if (slug === "outlet") {
       const sorted = [...allProducts]

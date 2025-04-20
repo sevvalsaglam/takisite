@@ -1,6 +1,5 @@
-/* ==== GENEL HEADER ==== */
 .header {
-  position: fixed;
+  position:sticky;
   top: 0;
   width: 100%;
   background: #1e2534;

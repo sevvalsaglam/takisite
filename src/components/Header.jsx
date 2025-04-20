@@ -18,7 +18,7 @@ function Header() {
   <Link to="/">
     <img src={logo} alt="Takı Dünyası" className="logo" />
   </Link>
-  <span className="logo-text">Takı Dünyası</span> {/* ✅ Masaüstü yazısı */}
+  <span className="logo-text">Takı Dünyası</span> 
 </div>
 
 

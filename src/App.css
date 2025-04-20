@@ -22,7 +22,6 @@ html, body, #root {
   padding: 0;
 }
 
-/* === Ana wrapper === */
 .main-wrapper {
   flex: 1;
   display: flex;
@@ -39,7 +38,7 @@ html, body, #root {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding-top: 80px; /* Header yüksekliği kadar */
+  padding-top: 80px; 
 }
 .app-container.no-padding .page-content {
   padding-top: 0 !important;

@@ -1,5 +1,5 @@
 import { useCart } from "../context/CartContext";
-import "../assets/shopping-cart.css"; // varsa buradan al
+import "../assets/shopping-cart.css"; 
 
 function ShoppingCart() {
   const { cart, removeFromCart, updateQuantity, clearCart } = useCart();

@@ -3,7 +3,7 @@ import { useCart } from "../context/CartContext";
 import { useFavorites } from "../context/FavoritesContext";
 import allProducts from "../data/allProducts";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
-import ProductList from "../components/ProductList"; // ✅ eklendi
+import ProductList from "../components/ProductList"; 
 import "../assets/product-page.css";
 
 function ProductPage() {
@@ -14,7 +14,6 @@ function ProductPage() {
 
   if (!product) return <p>Ürün bulunamadı.</p>;
 
-  // ✅ Benzer ürünleri filtrele (aynı kategori, kendisi hariç)
   const similarProducts = allProducts
     .filter((item) => item.category === product.category && item.id !== product.id)
     .slice(0, 4);
@@ -45,7 +44,6 @@ function ProductPage() {
         </div>
       </div>
 
-      {/* ✅ Benzer Ürünler Alanı */}
       {similarProducts.length > 0 && (
         <section className="similar-products-section">
           <h2>Benzer Ürünler</h2>

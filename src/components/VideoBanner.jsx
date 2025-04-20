@@ -13,7 +13,6 @@ function VideoBanner({ src = "src/assets/images/banner-video.mp4" }) {
         playsInline
       />
       <div className="video-overlay">
-        {/* İsteğe bağlı içerik buraya gelebilir */}
       </div>
     </section>
   );
