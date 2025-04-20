@@ -1,4 +1,3 @@
-/* Ortak Slider Stil */
 .slider {
   position: relative;
   width: 100%;
@@ -7,27 +6,23 @@
   
 }
 
-/* Tam Ekran Slider */
 .fullscreen-slider {
   height: 100vh;
   margin-bottom: 60px;
 }
 
-/* Standart Banner */
 .standard-slider {
   height: 400px;
   margin-top: 60px;
   margin-bottom: 60px;
 }
 
-/* Slider Görseli */
 .slide-image {
   width: 100%;
   height: 100%;
   object-fit:cover;
 }
 
-/* Navigasyon Okları */
 .prev, .next {
   position: absolute;
   top: 50%;
@@ -50,7 +45,6 @@
   right: 20px;
 }
 
-/* Mobil Uyum */
 @media (max-width: 768px) {
   .fullscreen-slider {
     height: 85vh;
