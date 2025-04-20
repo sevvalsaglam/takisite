@@ -102,6 +102,30 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
 }
+/* ⭐ Yıldız Puanlama */
+.star-rating {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.star {
+  font-size: 1.2rem;
+  color: #ccc;
+}
+
+.star.full {
+  color: #deb44b;
+}
+
+.star.half {
+  color: #deb44b;
+}
+
+.star.empty {
+  color: #ccc;
+}
+
 
 @media (max-width: 768px) {
   .product-page {

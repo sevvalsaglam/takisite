@@ -17,7 +17,7 @@
   justify-content: space-between;
   height: 100%;
   max-width: 280px;
-  min-height: 470px;
+  min-height: 500px;
 }
 
 .product-card:hover {
@@ -61,6 +61,19 @@
   white-space: nowrap;
 }
 
+/* ⭐ Yıldızlar */
+.product-rating {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  margin: 4px 0;
+}
+
+.product-rating .star {
+  font-size: 1.1rem;
+  color: #deb44b;
+}
+
 .price {
   font-weight: bold;
   font-size: 16px;
@@ -84,11 +97,11 @@
 }
 
 .fav-btn.active {
-  color: #d32f2f; 
+  color: #d32f2f;
 }
 
 .cart-btn.active {
-  color: #deb44b; 
+  color: #deb44b;
 }
 
 .details-btn {

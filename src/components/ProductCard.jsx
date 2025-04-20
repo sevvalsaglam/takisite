@@ -1,4 +1,4 @@
-import { FaHeart, FaShoppingCart } from "react-icons/fa";
+import { FaHeart, FaShoppingCart, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useFavorites } from "../context/FavoritesContext";
@@ -10,6 +10,21 @@ function ProductCard({ product }) {
   const isFavorite = favorites.some((item) => item.id === product.id);
   const isInCart = cart.some((item) => item.id === product.id);
 
+  // ⭐ Yıldızları puana göre oluştur
+  const renderStars = (rating) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      if (rating >= i) {
+        stars.push(<FaStar key={i} className="star full" />);
+      } else if (rating >= i - 0.5) {
+        stars.push(<FaStarHalfAlt key={i} className="star half" />);
+      } else {
+        stars.push(<FaRegStar key={i} className="star empty" />);
+      }
+    }
+    return stars;
+  };
+
   return (
     <div className="product-card">
       <Link to={`/product/${product.id}`}>
@@ -20,6 +35,7 @@ function ProductCard({ product }) {
         <h3>{product.category}</h3>
         <h2>{product.title}</h2>
         <p>{product.description}</p>
+        <div className="product-rating">{renderStars(product.point)}</div>
         <span className="price">{product.price} TL</span>
       </div>
 
