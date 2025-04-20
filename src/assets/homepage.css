@@ -1,11 +1,9 @@
-/* === Ana Sayfa Düzeni === */
 .homepage {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* === Başlıklar === */
 h2 {
   text-align: center;
   margin-top: 60px;
@@ -14,12 +12,10 @@ h2 {
   color: #1e2534;
 }
 
-/* === Ürünler === */
 .product-section .product-list {
   row-gap: 50px;
 }
 
-/* === Slider Genel Stil === */
 .slider-container {
   width: 100%;
 }
@@ -34,7 +30,6 @@ h2 {
   margin-top: 0;
 }
 
-/* === Boşluklar === */
 .spacer-between-banner-and-title,
 .spacer-above-second-banner,
 .spacer-below-second-banner {
@@ -45,7 +40,6 @@ h2 {
   height: 80px;
 }
 
-/* === Kategori Banner === */
 #categories-section {
   margin-top: 50px;
 }
@@ -84,7 +78,6 @@ h2 {
   padding-top: 0 !important;
 }
 
-/* === Mobil Uyum === */
 @media (max-width: 768px) {
   .category-box {
     width: 100px;

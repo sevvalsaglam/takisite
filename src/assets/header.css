@@ -42,15 +42,13 @@
   font-size: 1rem;
 }
 
-/* Logo yazısı (marka adı) */
 .logo-text {
   margin-left: 110px;
-  font-weight: bold;
+  font-weight:lighter;
   font-size: 1.2rem;
   color: #eee9e5;
 }
 
-/* Desktop ikonlar */
 .nav-icons {
   display: flex;
   align-items: center;
@@ -62,7 +60,6 @@
   font-size: 1.4rem;
 }
 
-/* Sepet sayacı */
 .cart-icon-wrapper {
   position: relative;
 }
@@ -79,7 +76,6 @@
   font-weight: bold;
 }
 
-/* Menü ikonu sadece mobilde */
 .menu-toggle {
   font-size: 1.6rem;
   background: none;
@@ -88,7 +84,6 @@
   cursor: pointer;
 }
 
-/* Mobil navigasyon menüsü */
 .mobile-nav {
   background-color: #eee9e5;
   display: flex;
@@ -106,7 +101,6 @@
   gap: 10px;
 }
 
-/* Responsive kontrol */
 .desktop-only {
   display: flex;
 }
@@ -121,5 +115,10 @@
   }
   .mobile-only {
     display: block;
+  }
+  .logo-text {
+    padding-right: 20px;
+    font-weight:lighter;
+    font-size:small;
   }
 }

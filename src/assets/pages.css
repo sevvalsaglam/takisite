@@ -1,9 +1,7 @@
-/* Genel sayfa stilleri */
 main {
   padding: 20px;
 }
 
-/* Sepet */
 .cart-container {
   display: flex;
   justify-content: space-between;
@@ -26,7 +24,6 @@ main {
   text-align: center;
 }
 
-/* Ürün Detay Sayfası */
 .product-page {
   display: flex;
   align-items: center;
