@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import ProductList from "../components/ProductList";
 import allProducts from "../data/allProducts";
-import "../assets/Categories.css";
+import "../assets/categories.css";
 
 import firstBannerImage from "../assets/images/tum-takilar-1.jpg";
 import kupeBanner from "../assets/images/kupe-banner.jpg";
