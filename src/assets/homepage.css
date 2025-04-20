@@ -24,29 +24,24 @@ h2 {
   width: 100%;
 }
 
-/* === Üst Slider Tam Ekran === */
 .top-slider {
   margin-top: 0;
   height: 100vh;
   overflow: hidden;
 }
 
-/* === Alt Slider === */
 .second-slider-container {
   margin-top: 0;
-  
 }
 
 /* === Boşluklar === */
-.spacer-between-banner-and-title {
+.spacer-between-banner-and-title,
+.spacer-above-second-banner,
+.spacer-below-second-banner {
   height: 60px;
 }
 
 .spacer-above-second-banner {
-  height: 80px;
-}
-
-.spacer-below-second-banner {
   height: 80px;
 }
 
@@ -80,6 +75,7 @@ h2 {
   text-decoration: none;
   border-radius: 5px;
 }
+
 .main-wrapper {
   padding-top: 80px;
 }

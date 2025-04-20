@@ -1,7 +1,6 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .card {
@@ -10,4 +9,38 @@
 
 .read-the-docs {
   color: #888;
+}
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Ana wrapper === */
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px;
+  min-height: 100vh;
+}
+
+.main-wrapper.no-padding {
+  padding-top: 0 !important;
+}
+
+.page-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px; /* Header yüksekliği kadar */
+}
+.app-container.no-padding .page-content {
+  padding-top: 0 !important;
 }

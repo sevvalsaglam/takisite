@@ -52,3 +52,19 @@
 .checkout-btn:hover {
   background: #deb44b;
 }
+
+.clear-cart-btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  background: #f5f5f5;
+  color: #494848;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.clear-cart-btn:hover {
+  background: #e0e0e0;
+}

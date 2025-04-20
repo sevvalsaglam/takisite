@@ -1,11 +1,10 @@
 .banner-container {
   position: relative;
   width: 100%;
-  height: 500px; /* Banner yüksekliğini artırdım */
-  max-height: calc(100vw * 9 / 16); /* Oranını korudum */
+  height: 500px;
+  max-height: calc(100vw * 9 / 16);
   overflow: hidden;
-  margin-bottom: 60px; /* Banner ile sayfa altı arası boşluk */
-
+  margin-bottom: 60px;
 }
 
 .first-banner {
@@ -22,7 +21,7 @@
 
 .category-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr); /* 7 kolonlu düzen */
+  grid-template-columns: repeat(7, 1fr);
   gap: 20px;
   background: rgba(255, 255, 255, 0.8);
   padding: 30px;
@@ -30,7 +29,6 @@
   margin-top: 30px;
 }
 
-/* Kategori kutuları */
 .category-box {
   display: flex;
   align-items: center;
@@ -112,20 +110,18 @@
   font-size: 14px;
 }
 
-
-/* ✅ Mobil Uyumluluk */
 @media (max-width: 768px) {
   .category-grid {
-    grid-template-columns: repeat(3, 1fr); /* Mobilde 3 kolon */
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .category-box {
     padding: 10px;
-    font-size: 16px; /* Mobilde daha küçük font */
+    font-size: 16px;
   }
 
   .category-button {
-    font-size: 24px; /* Mobilde font boyutunu küçülttüm */
-    padding: 15px 30px; /* Mobilde buton boyutunu küçülttüm */
+    font-size: 24px;
+    padding: 15px 30px;
   }
 }

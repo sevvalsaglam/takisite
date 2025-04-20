@@ -4,13 +4,11 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(() => {
-    // ✅ İlk yüklemede localStorage'tan oku
     const storedCart = localStorage.getItem("cart");
     return storedCart ? JSON.parse(storedCart) : [];
   });
 
   useEffect(() => {
-    // ✅ Sepet değiştiğinde localStorage'a yaz
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
@@ -45,8 +43,22 @@ export const CartProvider = ({ children }) => {
     );
   };
 
+  // ✅ Sepeti tamamen temizle
+  const clearCart = () => {
+    setCart([]);
+    localStorage.removeItem("cart");
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        clearCart, // ✅ Buraya eklendi
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

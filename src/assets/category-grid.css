@@ -54,7 +54,6 @@
     padding: 0 20px;
   }
   
-  /* Mobil görünüm */
   @media (max-width: 768px) {
     .homepage-category-grid {
       grid-template-columns: 1fr;

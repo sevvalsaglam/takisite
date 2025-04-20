@@ -1,66 +1,58 @@
-/* ✅ Genel Sayfa Yapısı */
+/* Genel Stiller */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-  }
-  
-  body {
-    color: #333;
-    background-color: #eee9e5; /* Açık zemin rengi (marka rengi) */
-    background-image: url("src/assets/images/taki-dunyasi-logo.png"); /* ✅ 'src/' olmadan kullanılmalı */
-    background-repeat: repeat;
-    background-size: 120px 120px; /* Desen boyutu (dilediğinde değiştirebilirsin) */
-    background-position: center;
-    background-attachment: fixed;
-    background-blend-mode: lighten; /* Daha yumuşak görünüm */
-  }
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  /* ✅ Buton ve Linkler */
-  button, .btn {
-    display: inline-block;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-  }
-  
-  .btn-primary {
-    background: black;
-    color: white;
-    transition: background 0.3s ease;
-  }
-  
-  .btn-primary:hover {
-    background: #d32f2f;
-  }
-  
-  /* ✅ Genel Başlıklar */
-  h1, h2, h3 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  /* Tüm sayfa içeriği header'dan aşağıda başlasın */
-.main-wrapper {
-  padding-top: 80px; /* ✅ Header yüksekliği kadar boşluk bırakır */
-}
-.main-wrapper.no-padding {
-  padding-top: 0 !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-  
-  /* ✅ Responsive (Mobil Uyumluluk) */
-  @media (max-width: 768px) {
-    .container {
-      padding: 10px;
-    }
+body {
+  color: #333;
+  background-color: #eee9e5;
+  background-image: url("src/assets/images/taki-dunyasi-logo.png");
+  background-repeat: repeat;
+  background-size: 120px 120px;
+  background-position: center;
+  background-attachment: fixed;
+  background-blend-mode: lighten;
+}
+
+/* Konteyner */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Butonlar */
+button, .btn {
+  display: inline-block;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-primary {
+  background: black;
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #d32f2f;
+}
+
+/* Başlıklar */
+h1, h2, h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Mobil Uyumluluk */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
   }
-  
+}

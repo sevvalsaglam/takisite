@@ -1,7 +1,8 @@
 import { useCart } from "../context/CartContext";
+import "../assets/shopping-cart.css"; // varsa buradan al
 
 function ShoppingCart() {
-  const { cart, removeFromCart, updateQuantity } = useCart();
+  const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
 
   const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
@@ -19,14 +20,17 @@ function ShoppingCart() {
                 <button onClick={() => updateQuantity(product.id, -1)}>-</button>
                 <span>{product.quantity}</span>
                 <button onClick={() => updateQuantity(product.id, 1)}>+</button>
-                <button onClick={() => removeFromCart(product.id)}>X</button>
+                <button onClick={() => removeFromCart(product.id)} className="remove-btn">X</button>
+
               </div>
             ))}
           </div>
 
-          {/* ✅ Toplam + Ödeme Butonu */}
           <div className="cart-summary">
-            <h3>Toplam: {totalPrice} TL</h3>
+            <div className="cart-summary-header">
+              <h3>Toplam: {totalPrice} TL</h3>
+              <button className="clear-cart-btn" onClick={clearCart}>Sepeti Boşalt</button>
+            </div>
             <button className="checkout-btn">Ödeme Yap</button>
           </div>
         </div>

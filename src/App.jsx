@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 import { FavoritesProvider } from "./context/FavoritesContext";
@@ -9,8 +9,33 @@ import HomePage from "./pages/HomePage";
 import Favorites from "./pages/Favorites";
 import ShoppingCart from "./pages/ShoppingCart";
 import Profile from "./pages/Profile";
-import Categories from "./pages/Categories"; // Categories sayfasını import et
-import ProductPage from "./pages/ProductPage"; 
+import Categories from "./pages/Categories";
+import ProductPage from "./pages/ProductPage";
+
+function AppContent() {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
+  return (
+    <div className={`app-container ${isHomePage ? "no-padding" : ""}`}>
+      <Header />
+
+      <main className="page-content">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/cart" element={<ShoppingCart />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/categories/:category" element={<Categories />} />
+          <Route path="/product/:id" element={<ProductPage />} />
+        </Routes>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
 
 function App() {
   return (
@@ -18,23 +43,8 @@ function App() {
       <CartProvider>
         <FavoritesProvider>
           <Router>
-  <Header />
-
-  <div className={`main-wrapper ${window.location.pathname === "/" ? "no-header-space" : ""}`}>
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/favorites" element={<Favorites />} />
-      <Route path="/cart" element={<ShoppingCart />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/categories" element={<Categories />} />
-      <Route path="/categories/:category" element={<Categories />} />
-      <Route path="/product/:id" element={<ProductPage />} />
-    </Routes>
-  </div>
-
-  <Footer />
-</Router>
-
+            <AppContent />
+          </Router>
         </FavoritesProvider>
       </CartProvider>
     </AuthProvider>
