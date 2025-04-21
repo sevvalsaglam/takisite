@@ -6,15 +6,15 @@ import VideoBanner from "../components/VideoBanner";
 import allProducts from "../data/allProducts";
 
 const firstSliderImages = [
-  "src/assets/images/banner-foto-3.jpg",
-  "src/assets/images/banner-foto-2.jpg",
-  "src/assets/images/banner-foto-4.jpg"
+  "/images/banner-foto-3.jpg",
+  "/images/banner-foto-2.jpg",
+  "/images/banner-foto-4.jpg"
 ];
 
 const secondSliderImages = [
-  "src/assets/images/banner-foto-5.jpg",
-  "src/assets/images/banner-foto-6.jpg",
-  "src/assets/images/banner-foto-7.jpg"
+  "/images/banner-foto-5.jpg",
+  "/images/banner-foto-6.jpg",
+  "/images/banner-foto-7.jpg"
 ];
 
 function HomePage() {
@@ -33,7 +33,7 @@ function HomePage() {
 
       <CategoryGrid />
 
-      <VideoBanner src="src/assets/images/banner-video.mp4" />
+      <VideoBanner src="/images/banner-video.mp4" />
 
       <h2>Yeni Ürünler</h2>
       <div className="product-section">

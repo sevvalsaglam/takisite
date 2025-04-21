@@ -1,7 +1,7 @@
 import React from "react";
 import "../assets/video-banner.css";
 
-function VideoBanner({ src = "src/assets/images/banner-video.mp4" }) {
+function VideoBanner({ src = "/images/banner-video.mp4" }) {
   return (
     <section className="video-banner-container">
       <video

@@ -4,15 +4,6 @@ import ProductList from "../components/ProductList";
 import allProducts from "../data/allProducts";
 import "../assets/categories.css";
 
-import firstBannerImage from "../assets/images/tum-takilar-1.jpg";
-import kupeBanner from "../assets/images/kupe-banner.jpg";
-import bileklikBanner from "../assets/images/bileklik-banner.jpg";
-import kolyeBanner from "../assets/images/kolye-banner.jpg";
-import yuzukBanner from "../assets/images/yuzuk-banner.jpg";
-import brosBanner from "../assets/images/bros-banner.jpg";
-import piercingBanner from "../assets/images/piercing-banner.jpg";
-import halhalBanner from "../assets/images/halhal-banner.jpg";
-
 const categories = [
   { name: "Küpe", slug: "küpe" },
   { name: "Bileklik", slug: "bileklik" },
@@ -24,14 +15,14 @@ const categories = [
 ];
 
 const banners = [
-  { type: "grid", image: firstBannerImage },
-  { category: "küpe", image: kupeBanner },
-  { category: "bileklik", image: bileklikBanner },
-  { category: "kolye", image: kolyeBanner },
-  { category: "yuzuk", image: yuzukBanner },
-  { category: "bros", image: brosBanner },
-  { category: "piercing", image: piercingBanner },
-  { category: "halhal", image: halhalBanner }
+  { type: "grid", image: "/images/tum-takilar-1.jpg" },
+  { category: "küpe", image: "/images/kupe-banner.jpg" },
+  { category: "bileklik", image: "/images/bileklik-banner.jpg" },
+  { category: "kolye", image: "/images/kolye-banner.jpg" },
+  { category: "yuzuk", image: "/images/yuzuk-banner.jpg" },
+  { category: "bros", image: "/images/bros-banner.jpg" },
+  { category: "piercing", image: "/images/piercing-banner.jpg" },
+  { category: "halhal", image: "/images/halhal-banner.jpg" }
 ];
 
 function Categories() {
@@ -47,10 +38,8 @@ function Categories() {
     filteredProducts = [...filteredProducts].sort((a, b) => a.price - b.price);
   } else if (sortOption === "price-desc") {
     filteredProducts = [...filteredProducts].sort((a, b) => b.price - a.price);
-  } else if (sortOption === "random") {
+  } else if (sortOption === "random" || sortOption === "rating") {
     filteredProducts = [...filteredProducts].sort(() => 0.5 - Math.random());
-  } else if (sortOption === "rating") {
-    filteredProducts = [...filteredProducts].sort(() => 0.5 - Math.random()); 
   }
 
   const nextBanner = () => {

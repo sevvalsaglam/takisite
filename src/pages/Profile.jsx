@@ -1,8 +1,6 @@
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
 import "../assets/profile.css";
-import logo from "../assets/images/taki-dunyasi-logo-2.png";
-
 
 function Profile() {
   const { user, login, logout } = useAuth();
@@ -25,45 +23,42 @@ function Profile() {
   };
 
   return (
-<main className="profile-wrapper">
-  <div className="profile-card">
-  <img src={logo} alt="Takı Dünyası" className="profile-logo" />
+    <main className="profile-wrapper">
+      <div className="profile-card">
+        <img src="/images/taki-dunyasi-logo-2.png" alt="Takı Dünyası" className="profile-logo" />
 
+        <h2>{isRegistering ? "Kayıt Ol" : "Giriş Yap"}</h2>
 
-    <h2>{isRegistering ? "Kayıt Ol" : "Giriş Yap"}</h2>
+        {!user ? (
+          <>
+            <form onSubmit={handleSubmit} className="profile-form">
+              {isRegistering && (
+                <>
+                  <input type="text" name="name" placeholder="Adınız" onChange={handleChange} required />
+                  <input type="text" name="surname" placeholder="Soyadınız" onChange={handleChange} required />
+                  <textarea name="address" placeholder="Adresiniz" onChange={handleChange} required></textarea>
+                </>
+              )}
+              <input type="email" name="email" placeholder="E-posta" onChange={handleChange} required />
+              <input type="password" name="password" placeholder="Şifre" onChange={handleChange} required />
+              <button type="submit">{isRegistering ? "Kayıt Ol" : "Giriş Yap"}</button>
+            </form>
 
-    {!user ? (
-      <>
-        <form onSubmit={handleSubmit} className="profile-form">
-          {isRegistering && (
-            <>
-              <input type="text" name="name" placeholder="Adınız" onChange={handleChange} required />
-              <input type="text" name="surname" placeholder="Soyadınız" onChange={handleChange} required />
-              <textarea name="address" placeholder="Adresiniz" onChange={handleChange} required></textarea>
-            </>
-          )}
-          <input type="email" name="email" placeholder="E-posta" onChange={handleChange} required />
-          <input type="password" name="password" placeholder="Şifre" onChange={handleChange} required />
-          <button type="submit">{isRegistering ? "Kayıt Ol" : "Giriş Yap"}</button>
-        </form>
-
-        <p onClick={() => setIsRegistering(!isRegistering)} className="toggle-form">
-          {isRegistering ? "Zaten üye misin? Giriş Yap" : "Hesabın yok mu? Kayıt Ol"}
-        </p>
-      </>
-    ) : (
-      <>
-        <p><strong>Ad:</strong> {user.name}</p>
-        <p><strong>Soyad:</strong> {user.surname}</p>
-        <p><strong>Email:</strong> {user.email}</p>
-        <p><strong>Adres:</strong> {user.address}</p>
-        <button onClick={logout} className="logout-btn">Çıkış Yap</button>
-      </>
-    )}
-  </div>
-</main>
-
-
+            <p onClick={() => setIsRegistering(!isRegistering)} className="toggle-form">
+              {isRegistering ? "Zaten üye misin? Giriş Yap" : "Hesabın yok mu? Kayıt Ol"}
+            </p>
+          </>
+        ) : (
+          <>
+            <p><strong>Ad:</strong> {user.name}</p>
+            <p><strong>Soyad:</strong> {user.surname}</p>
+            <p><strong>Email:</strong> {user.email}</p>
+            <p><strong>Adres:</strong> {user.address}</p>
+            <button onClick={logout} className="logout-btn">Çıkış Yap</button>
+          </>
+        )}
+      </div>
+    </main>
   );
 }
 
