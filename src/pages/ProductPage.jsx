@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useFavorites } from "../context/FavoritesContext";
-import allProducts from "../data/allProducts";
-import { FaHeart, FaShoppingCart, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa"; // ⭐ Eklenen yıldız ikonları
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { FaHeart, FaShoppingCart, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import ProductList from "../components/ProductList"; 
 import "../assets/product-page.css";
 
@@ -10,13 +11,30 @@ function ProductPage() {
   const { id } = useParams();
   const { addToCart } = useCart();
   const { toggleFavorite, favorites } = useFavorites();
-  const product = allProducts.find((item) => item.id === parseInt(id));
+  const [product, setProduct] = useState(null);
+  const [similarProducts, setSimilarProducts] = useState([]);
 
-  if (!product) return <p>Ürün bulunamadı.</p>;
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/api/products/${id}`)
+      .then((res) => {
+        setProduct(res.data);
+        fetchSimilarProducts(res.data.category, res.data.id);
+      })
+      .catch((err) => {
+        console.error("Ürün alınamadı:", err);
+      });
+  }, [id]);
 
-  const similarProducts = allProducts
-    .filter((item) => item.category === product.category && item.id !== product.id)
-    .slice(0, 4);
+  const fetchSimilarProducts = (category, productId) => {
+    axios
+      .get(`http://localhost:8080/api/products/category/${category}`)
+      .then((res) => {
+        const filtered = res.data.filter((item) => item.id !== parseInt(productId));
+        setSimilarProducts(filtered.slice(0, 4));
+      })
+      .catch((err) => console.error("Benzer ürünler alınamadı:", err));
+  };
 
   const renderStars = () => {
     const stars = [];
@@ -38,6 +56,8 @@ function ProductPage() {
     return stars;
   };
 
+  if (!product) return <p>Ürün yükleniyor...</p>;
+
   return (
     <main className="product-page">
       <img
@@ -50,7 +70,6 @@ function ProductPage() {
         <h3>{product.category.toUpperCase()}</h3>
         <h2>{product.title}</h2>
 
-        {/* ⭐ Puan Bileşeni */}
         <div className="star-rating">{renderStars()}</div>
 
         <p>{product.description}</p>

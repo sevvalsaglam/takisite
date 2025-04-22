@@ -1,8 +1,17 @@
 import { Link, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import ProductList from "../components/ProductList";
-import allProducts from "../data/allProducts";
 import "../assets/categories.css";
+
+import firstBannerImage from "/images/tum-takilar-1.jpg";
+import kupeBanner from "/images/kupe-banner.jpg";
+import bileklikBanner from "/images/bileklik-banner.jpg";
+import kolyeBanner from "/images/kolye-banner.jpg";
+import yuzukBanner from "/images/yuzuk-banner.jpg";
+import brosBanner from "/images/bros-banner.jpg";
+import piercingBanner from "/images/piercing-banner.jpg";
+import halhalBanner from "/images/halhal-banner.jpg";
 
 const categories = [
   { name: "Küpe", slug: "küpe" },
@@ -15,31 +24,42 @@ const categories = [
 ];
 
 const banners = [
-  { type: "grid", image: "/images/tum-takilar-1.jpg" },
-  { category: "küpe", image: "/images/kupe-banner.jpg" },
-  { category: "bileklik", image: "/images/bileklik-banner.jpg" },
-  { category: "kolye", image: "/images/kolye-banner.jpg" },
-  { category: "yuzuk", image: "/images/yuzuk-banner.jpg" },
-  { category: "bros", image: "/images/bros-banner.jpg" },
-  { category: "piercing", image: "/images/piercing-banner.jpg" },
-  { category: "halhal", image: "/images/halhal-banner.jpg" }
+  { type: "grid", image: firstBannerImage },
+  { category: "küpe", image: kupeBanner },
+  { category: "bileklik", image: bileklikBanner },
+  { category: "kolye", image: kolyeBanner },
+  { category: "yuzuk", image: yuzukBanner },
+  { category: "bros", image: brosBanner },
+  { category: "piercing", image: piercingBanner },
+  { category: "halhal", image: halhalBanner }
 ];
 
 function Categories() {
   const { category } = useParams();
+  const [products, setProducts] = useState([]);
   const [currentBanner, setCurrentBanner] = useState(0);
   const [sortOption, setSortOption] = useState("default");
 
+  // Ürünleri backend'den al
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/products")
+      .then((res) => setProducts(res.data))
+      .catch((err) => console.error("Ürün verisi alınamadı:", err));
+  }, []);
+
   let filteredProducts = category
-    ? allProducts.filter((product) => product.category === category)
-    : allProducts;
+    ? products.filter((product) => product.category === category)
+    : products;
 
   if (sortOption === "price-asc") {
     filteredProducts = [...filteredProducts].sort((a, b) => a.price - b.price);
   } else if (sortOption === "price-desc") {
     filteredProducts = [...filteredProducts].sort((a, b) => b.price - a.price);
-  } else if (sortOption === "random" || sortOption === "rating") {
+  } else if (sortOption === "random") {
     filteredProducts = [...filteredProducts].sort(() => 0.5 - Math.random());
+  } else if (sortOption === "rating") {
+    filteredProducts = [...filteredProducts].sort((a, b) => b.point - a.point);
   }
 
   const nextBanner = () => {

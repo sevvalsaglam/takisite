@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import Slider from "../components/Slider";
 import ProductList from "../components/ProductList";
 import CategoryGrid from "../components/CategoryGrid";
 import VideoBanner from "../components/VideoBanner";
-import allProducts from "../data/allProducts";
 
 const firstSliderImages = [
   "/images/banner-foto-3.jpg",
@@ -21,8 +21,13 @@ function HomePage() {
   const [randomProducts, setRandomProducts] = useState([]);
 
   useEffect(() => {
-    const shuffled = [...allProducts].sort(() => 0.5 - Math.random());
-    setRandomProducts(shuffled.slice(0, 8));
+    axios
+      .get("http://localhost:8080/api/products")
+      .then((res) => {
+        const shuffled = res.data.sort(() => 0.5 - Math.random());
+        setRandomProducts(shuffled.slice(0, 8));
+      })
+      .catch((err) => console.error("Ürünler alınamadı:", err));
   }, []);
 
   return (

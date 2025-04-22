@@ -1,7 +1,7 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import categories from "../data/categoriesData";
+import axios from "axios";
 import "../assets/category-grid.css";
-import allProducts from "../data/allProducts";
 
 const clipPaths = [
   "polygon(0 0, 100% 10%, 95% 100%, 0% 90%)",
@@ -15,9 +15,28 @@ const clipPaths = [
 ];
 
 function CategoryGrid() {
+  const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  // Kategorileri backend'den al
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/categories")
+      .then((res) => setCategories(res.data))
+      .catch((err) => console.error("Kategori verisi alınamadı:", err));
+  }, []);
+
+  // Outlet ürünleri için ürünleri al
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/products")
+      .then((res) => setProducts(res.data))
+      .catch((err) => console.error("Ürün verisi alınamadı:", err));
+  }, []);
+
   const getOutletSlug = (slug) => {
     if (slug === "outlet") {
-      const sorted = [...allProducts]
+      const sorted = [...products]
         .sort((a, b) => a.price - b.price)
         .slice(0, 20);
       localStorage.setItem("outletProducts", JSON.stringify(sorted));

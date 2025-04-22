@@ -1,8 +1,26 @@
-import { useCart } from "../context/CartContext";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import "../assets/shopping-cart.css";
 
 function ShoppingCart() {
-  const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
+  const [cart, setCart] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const userId = 1; // Demo amaçlı sabit kullanıcı
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/api/users/${userId}/cart`);
+        setCart(response.data);
+      } catch (error) {
+        console.error("Sepet verisi alınamadı:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCart();
+  }, []);
 
   const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const isCartEmpty = cart.length === 0;
@@ -12,7 +30,9 @@ function ShoppingCart() {
       <h1>Sepetim</h1>
       <div className="cart-container">
         <div className="cart-items">
-          {isCartEmpty ? (
+          {loading ? (
+            <div>Yükleniyor...</div>
+          ) : isCartEmpty ? (
             <div className="empty-cart-message">Sepetiniz boş.</div>
           ) : (
             cart.map((product) => (
@@ -20,10 +40,10 @@ function ShoppingCart() {
                 <img src={product.image} alt={product.title} className="cart-image" />
                 <h3>{product.title}</h3>
                 <span>{product.price} TL</span>
-                <button onClick={() => updateQuantity(product.id, -1)}>-</button>
+                <button disabled>-</button>
                 <span>{product.quantity}</span>
-                <button onClick={() => updateQuantity(product.id, 1)}>+</button>
-                <button onClick={() => removeFromCart(product.id)} className="remove-btn">X</button>
+                <button disabled>+</button>
+                <button className="remove-btn" disabled>X</button>
               </div>
             ))
           )}
@@ -32,11 +52,7 @@ function ShoppingCart() {
         <div className="cart-summary">
           <div className="cart-summary-header">
             <h3>Toplam: {isCartEmpty ? "0 TL" : `${totalPrice} TL`}</h3>
-            <button
-              className="clear-cart-btn"
-              onClick={clearCart}
-              disabled={isCartEmpty}
-            >
+            <button className="clear-cart-btn" disabled={isCartEmpty}>
               Sepeti Boşalt
             </button>
           </div>

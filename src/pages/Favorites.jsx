@@ -1,13 +1,37 @@
-import { useFavorites } from "../context/FavoritesContext";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import ProductList from "../components/ProductList";
 
 function Favorites() {
-  const { favorites } = useFavorites();
+  const [favorites, setFavorites] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const userId = 1; // 🔒 Demo kullanıcı ID’si — Gerçek uygulamada oturum açmış kullanıcıdan alınmalı
+
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/api/users/${userId}/favorites`);
+        setFavorites(response.data);
+      } catch (error) {
+        console.error("Favoriler alınırken hata oluştu:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFavorites();
+  }, []);
 
   return (
-    <main >
+    <main>
       <h1>Favorilerim</h1>
-      {favorites.length > 0 ? <ProductList products={favorites} /> : <p>Henüz favorilere eklediğiniz ürün yok.</p>}
+      {loading ? (
+        <p>Yükleniyor...</p>
+      ) : favorites.length > 0 ? (
+        <ProductList products={favorites} />
+      ) : (
+        <p>Henüz favorilere eklediğiniz ürün yok.</p>
+      )}
     </main>
   );
 }
