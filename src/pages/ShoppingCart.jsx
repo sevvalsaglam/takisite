@@ -5,7 +5,7 @@ import "../assets/shopping-cart.css";
 function ShoppingCart() {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
-  const userId = 1; // Demo amaçlı sabit kullanıcı
+  const userId = localStorage.getItem("userId") || 1;
 
   useEffect(() => {
     const fetchCart = async () => {
@@ -20,13 +20,13 @@ function ShoppingCart() {
     };
 
     fetchCart();
-  }, []);
+  }, [userId]);
 
   const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const isCartEmpty = cart.length === 0;
 
   return (
-    <main>
+    <main className="shopping-cart-page">
       <h1>Sepetim</h1>
       <div className="cart-container">
         <div className="cart-items">

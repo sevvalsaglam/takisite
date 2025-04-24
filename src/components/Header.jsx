@@ -9,6 +9,7 @@ import {
   FaBars
 } from "react-icons/fa";
 import { useCart } from "../context/CartContext";
+import SearchBar from "./SearchBar";
 
 function Header() {
   const { cart } = useCart();
@@ -28,6 +29,7 @@ function Header() {
 
         {/* Arama çubuğu */}
         <input type="text" placeholder="Ara..." className="search-bar" />
+        <SearchBar />
 
         {/* Masaüstü ikonları */}
         <div className="nav-icons desktop-only">

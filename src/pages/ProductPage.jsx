@@ -37,6 +37,8 @@ function ProductPage() {
   };
 
   const renderStars = () => {
+    if (!product) return null;
+
     const stars = [];
     const fullStars = Math.floor(product.point);
     const hasHalfStar = product.point % 1 >= 0.4;

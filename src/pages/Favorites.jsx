@@ -5,7 +5,7 @@ import ProductList from "../components/ProductList";
 function Favorites() {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
-  const userId = 1; // 🔒 Demo kullanıcı ID’si — Gerçek uygulamada oturum açmış kullanıcıdan alınmalı
+  const userId = localStorage.getItem("userId") || 1;
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -20,10 +20,10 @@ function Favorites() {
     };
 
     fetchFavorites();
-  }, []);
+  }, [userId]);
 
   return (
-    <main>
+    <main className="favorites-page">
       <h1>Favorilerim</h1>
       {loading ? (
         <p>Yükleniyor...</p>

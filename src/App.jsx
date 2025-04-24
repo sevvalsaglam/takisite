@@ -4,6 +4,7 @@ import { CartProvider } from "./context/CartContext";
 import { FavoritesProvider } from "./context/FavoritesContext";
 
 import Header from "./components/Header";
+import SearchResults from "./pages/SearchResults";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import Favorites from "./pages/Favorites";
@@ -29,6 +30,7 @@ function AppContent() {
           <Route path="/categories" element={<Categories />} />
           <Route path="/categories/:category" element={<Categories />} />
           <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/search" element={<SearchResults />} />
         </Routes>
       </main>
 

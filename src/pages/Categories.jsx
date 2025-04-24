@@ -42,25 +42,31 @@ function Categories() {
 
   // Ürünleri backend'den al
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/api/products")
-      .then((res) => setProducts(res.data))
-      .catch((err) => console.error("Ürün verisi alınamadı:", err));
-  }, []);
-
-  let filteredProducts = category
-    ? products.filter((product) => product.category === category)
-    : products;
-
+    if (category) {
+      axios
+        .get(`http://localhost:8080/api/products/category/${category}`)
+        .then((res) => setProducts(res.data))
+        .catch((err) => console.error("Kategoriye göre ürün alınamadı:", err));
+    } else {
+      axios
+        .get("http://localhost:8080/api/products")
+        .then((res) => setProducts(res.data))
+        .catch((err) => console.error("Tüm ürünler alınamadı:", err));
+    }
+  }, [category]);
+  
+  let filteredProducts = [...products];
+  
   if (sortOption === "price-asc") {
-    filteredProducts = [...filteredProducts].sort((a, b) => a.price - b.price);
+    filteredProducts.sort((a, b) => a.price - b.price);
   } else if (sortOption === "price-desc") {
-    filteredProducts = [...filteredProducts].sort((a, b) => b.price - a.price);
+    filteredProducts.sort((a, b) => b.price - a.price);
   } else if (sortOption === "random") {
-    filteredProducts = [...filteredProducts].sort(() => 0.5 - Math.random());
+    filteredProducts.sort(() => 0.5 - Math.random());
   } else if (sortOption === "rating") {
-    filteredProducts = [...filteredProducts].sort((a, b) => b.point - a.point);
+    filteredProducts.sort((a, b) => b.point - a.point);
   }
+  
 
   const nextBanner = () => {
     setCurrentBanner((prev) => (prev + 1) % banners.length);
