@@ -1,0 +1,48 @@
+.search-bar-container {
+    position: relative;
+    flex: 1;
+    max-width: 400px;
+    margin: 0 20px;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 7px 40px 7px 12px; /* Sağda ikon için boşluk */
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: white;
+    color: #1e2534;
+  }
+  
+  .search-input::placeholder {
+    color: #aaa;
+  }
+  
+  .search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+    pointer-events: none;
+    font-size: 1.2rem;
+  }
+  
+  @media (max-width: 768px) {
+    .search-bar-container {
+      margin: 10px 0;
+      padding: 0 20px;
+      max-width: 100%;
+    }
+  
+    .search-input {
+      font-size: 0.9rem;
+    }
+  
+    .search-icon {
+      font-size: 0.9rem;
+      margin-right: 12px;
+    }
+  }
+  

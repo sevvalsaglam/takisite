@@ -14,7 +14,7 @@ import piercingBanner from "/images/piercing-banner.jpg";
 import halhalBanner from "/images/halhal-banner.jpg";
 
 const categories = [
-  { name: "Küpe", slug: "küpe" },
+  { name: "Küpe", slug: "kupe" },
   { name: "Bileklik", slug: "bileklik" },
   { name: "Kolye", slug: "kolye" },
   { name: "Yüzük", slug: "yuzuk" },
@@ -25,7 +25,7 @@ const categories = [
 
 const banners = [
   { type: "grid", image: firstBannerImage },
-  { category: "küpe", image: kupeBanner },
+  { category: "kupe", image: kupeBanner },
   { category: "bileklik", image: bileklikBanner },
   { category: "kolye", image: kolyeBanner },
   { category: "yuzuk", image: yuzukBanner },
@@ -42,17 +42,20 @@ function Categories() {
 
   // Ürünleri backend'den al
   useEffect(() => {
-    if (category) {
-      axios
-        .get(`http://localhost:8080/api/products/category/${category}`)
-        .then((res) => setProducts(res.data))
-        .catch((err) => console.error("Kategoriye göre ürün alınamadı:", err));
-    } else {
-      axios
-        .get("http://localhost:8080/api/products")
-        .then((res) => setProducts(res.data))
-        .catch((err) => console.error("Tüm ürünler alınamadı:", err));
-    }
+    const fetchProducts = async () => {
+      try {
+        const endpoint = category
+          ? `http://localhost:8080/api/products/category/${category}`
+          : `http://localhost:8080/api/products`;
+  
+        const res = await axios.get(endpoint);
+        setProducts(res.data);
+      } catch (err) {
+        console.error("Ürün verisi alınamadı:", err);
+      }
+    };
+  
+    fetchProducts();
   }, [category]);
   
   let filteredProducts = [...products];

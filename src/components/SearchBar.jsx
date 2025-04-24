@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaSearch } from "react-icons/fa"; // 🔍 Search ikonu
+import "../assets/searchbar.css";
 
 function SearchBar() {
   const [query, setQuery] = useState("");
@@ -19,9 +21,9 @@ function SearchBar() {
         placeholder="Ürün ara..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="search-bar"
+        className="search-input"
       />
-      <button type="submit" className="search-button">Ara</button>
+      <FaSearch className="search-icon" />
     </form>
   );
 }

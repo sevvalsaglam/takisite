@@ -27,8 +27,7 @@ function Header() {
           <span className="logo-text">Takı Dünyası</span>
         </div>
 
-        {/* Arama çubuğu */}
-        <input type="text" placeholder="Ara..." className="search-bar" />
+        {/* ✅ Arama Çubuğu */}
         <SearchBar />
 
         {/* Masaüstü ikonları */}
