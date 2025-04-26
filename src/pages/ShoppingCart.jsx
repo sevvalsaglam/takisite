@@ -17,7 +17,8 @@ function ShoppingCart() {
 
     const fetchCart = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/cart/${userEmail}`);
+        const response = await axios.get(`http://localhost:8080/api/users/{email}/cart
+        `);
         setCart(response.data);
       } catch (error) {
         console.error("Sepet verisi alınamadı:", error);

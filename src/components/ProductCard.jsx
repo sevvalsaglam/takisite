@@ -1,20 +1,20 @@
 import { FaHeart, FaShoppingCart, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import axios from 'axios';
 
 function ProductCard({ product }) {
-  const user = JSON.parse(localStorage.getItem("user")); 
-  const userEmail = user?.email;
+  const { user } = useAuth(); 
 
   const addToFavorites = async () => {
-    if (!userEmail) {
+    if (!user) {
       alert("Ürünü favorilere eklemek için giriş yapınız.");
       return;
     }
     try {
       await axios.post("http://localhost:8080/api/favorites", {
-        userEmail: userEmail,
-        productId: product.id
+        user: { email: user.email },
+        product: { id: product.id }
       });
       alert("Ürün favorilere eklendi!");
     } catch (error) {
@@ -24,14 +24,14 @@ function ProductCard({ product }) {
   };
 
   const addToCart = async () => {
-    if (!userEmail) {
+    if (!user) {
       alert("Ürünü sepete eklemek için giriş yapınız.");
       return;
     }
     try {
       await axios.post("http://localhost:8080/api/cart", {
-        userEmail: userEmail,
-        productId: product.id,
+        user: { email: user.email },
+        product: { id: product.id },
         quantity: 1
       });
       alert("Ürün sepete eklendi!");
@@ -73,7 +73,6 @@ function ProductCard({ product }) {
         <button className="fav-btn" onClick={addToFavorites}>
           <FaHeart />
         </button>
-
         <button className="cart-btn" onClick={addToCart}>
           <FaShoppingCart />
         </button>

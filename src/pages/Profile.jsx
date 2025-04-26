@@ -1,5 +1,6 @@
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
+import axios from "axios";
 import "../assets/profile.css";
 
 function Profile() {
@@ -17,9 +18,24 @@ function Profile() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login(formData);
+    
+    try {
+      if (isRegistering) {
+        // Eğer kayıt oluyorsa:
+        const response = await axios.post("http://localhost:8080/api/auth/register", formData);
+        login(response.data); // backend'den dönen kullanıcı verisi
+      } else {
+        // Eğer giriş yapıyorsa:
+        const { email, password } = formData;
+        const response = await axios.post("http://localhost:8080/api/auth/login", { email, password });
+        login(response.data); // backend'den dönen kullanıcı verisi
+      }
+    } catch (error) {
+      console.error("İşlem hatası:", error);
+      alert("Bir hata oluştu. Lütfen bilgilerinizi kontrol edin.");
+    }
   };
 
   return (
@@ -36,7 +52,7 @@ function Profile() {
                 <>
                   <input type="text" name="name" placeholder="Adınız" onChange={handleChange} required />
                   <input type="text" name="surname" placeholder="Soyadınız" onChange={handleChange} required />
-                  <textarea name="address" placeholder="Adresiniz" onChange={handleChange} required></textarea>
+                  <textarea name="address" placeholder="Adresiniz" onChange={handleChange}></textarea>
                 </>
               )}
               <input type="email" name="email" placeholder="E-posta" onChange={handleChange} required />
