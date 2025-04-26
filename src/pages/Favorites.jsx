@@ -5,12 +5,19 @@ import ProductList from "../components/ProductList";
 function Favorites() {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
-  const userId = localStorage.getItem("userId") || 1;
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userEmail = user?.email;
 
   useEffect(() => {
+    if (!userEmail) {
+      setLoading(false);
+      return;
+    }
+
     const fetchFavorites = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/users/${userId}/favorites`);
+        const response = await axios.get(`http://localhost:8080/api/users/${userEmail}/favorites`);
         setFavorites(response.data);
       } catch (error) {
         console.error("Favoriler alınırken hata oluştu:", error);
@@ -20,7 +27,7 @@ function Favorites() {
     };
 
     fetchFavorites();
-  }, [userId]);
+  }, [userEmail]);
 
   return (
     <main className="favorites-page">

@@ -5,12 +5,19 @@ import "../assets/shopping-cart.css";
 function ShoppingCart() {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
-  const userId = localStorage.getItem("userId") || 1;
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userEmail = user?.email;
 
   useEffect(() => {
+    if (!userEmail) {
+      setLoading(false);
+      return;
+    }
+
     const fetchCart = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/users/${userId}/cart`);
+        const response = await axios.get(`http://localhost:8080/api/users/${userEmail}/cart`);
         setCart(response.data);
       } catch (error) {
         console.error("Sepet verisi alınamadı:", error);
@@ -20,7 +27,7 @@ function ShoppingCart() {
     };
 
     fetchCart();
-  }, [userId]);
+  }, [userEmail]);
 
   const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const isCartEmpty = cart.length === 0;
@@ -40,10 +47,7 @@ function ShoppingCart() {
                 <img src={product.image} alt={product.title} className="cart-image" />
                 <h3>{product.title}</h3>
                 <span>{product.price} TL</span>
-                <button disabled>-</button>
-                <span>{product.quantity}</span>
-                <button disabled>+</button>
-                <button className="remove-btn" disabled>X</button>
+                <span>Adet: {product.quantity}</span>
               </div>
             ))
           )}
