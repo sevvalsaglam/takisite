@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ProductList from "../components/ProductList";
+import "../assets/favorites.css";
 
 function Favorites() {
   const [favorites, setFavorites] = useState([]);
@@ -37,7 +38,7 @@ function Favorites() {
       ) : favorites.length > 0 ? (
         <ProductList products={favorites} />
       ) : (
-        <p>Henüz favorilere eklediğiniz ürün yok.</p>
+        <p className="no-favori">Henüz favorilere eklediğiniz ürün yok.</p>
       )}
     </main>
   );
