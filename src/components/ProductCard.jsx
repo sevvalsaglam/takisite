@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 
 function ProductCard({ product }) {
-  const user = JSON.parse(localStorage.getItem("user")); // Giriş yapan kullanıcı
+  const user = JSON.parse(localStorage.getItem("user")); 
   const userEmail = user?.email;
 
   const addToFavorites = async () => {
@@ -13,8 +13,8 @@ function ProductCard({ product }) {
     }
     try {
       await axios.post("http://localhost:8080/api/favorites", {
-        user: { email: userEmail },
-        product: { id: product.id }
+        userEmail: userEmail,
+        productId: product.id
       });
       alert("Ürün favorilere eklendi!");
     } catch (error) {
@@ -30,8 +30,8 @@ function ProductCard({ product }) {
     }
     try {
       await axios.post("http://localhost:8080/api/cart", {
-        user: { email: userEmail },
-        product: { id: product.id },
+        userEmail: userEmail,
+        productId: product.id,
         quantity: 1
       });
       alert("Ürün sepete eklendi!");
@@ -41,7 +41,6 @@ function ProductCard({ product }) {
     }
   };
 
-  // ⭐ Yıldızları puana göre oluştur
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {

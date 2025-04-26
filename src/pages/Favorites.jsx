@@ -18,7 +18,7 @@ function Favorites() {
 
     const fetchFavorites = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/users/${userEmail}/favorites`);
+        const response = await axios.get(`http://localhost:8080/api/favorites/${userEmail}`);
         setFavorites(response.data);
       } catch (error) {
         console.error("Favoriler alınırken hata oluştu:", error);

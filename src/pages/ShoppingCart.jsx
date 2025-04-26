@@ -17,7 +17,7 @@ function ShoppingCart() {
 
     const fetchCart = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/users/${userEmail}/cart`);
+        const response = await axios.get(`http://localhost:8080/api/cart/${userEmail}`);
         setCart(response.data);
       } catch (error) {
         console.error("Sepet verisi alınamadı:", error);
@@ -42,12 +42,12 @@ function ShoppingCart() {
           ) : isCartEmpty ? (
             <div className="empty-cart-message">Sepetiniz boş.</div>
           ) : (
-            cart.map((product) => (
-              <div key={product.id} className="cart-item">
-                <img src={product.image} alt={product.title} className="cart-image" />
-                <h3>{product.title}</h3>
-                <span>{product.price} TL</span>
-                <span>Adet: {product.quantity}</span>
+            cart.map((item) => (
+              <div key={item.id} className="cart-item">
+                <img src={item.image} alt={item.title} className="cart-image" />
+                <h3>{item.title}</h3>
+                <span>{item.price} TL</span>
+                <span>Adet: {item.quantity}</span>
               </div>
             ))
           )}
@@ -60,7 +60,9 @@ function ShoppingCart() {
               Sepeti Boşalt
             </button>
           </div>
-          <button className="checkout-btn" disabled={isCartEmpty}>Ödeme Yap</button>
+          <button className="checkout-btn" disabled={isCartEmpty}>
+            Ödeme Yap
+          </button>
         </div>
       </div>
     </main>
