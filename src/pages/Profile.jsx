@@ -20,23 +20,24 @@ function Profile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+  
     try {
       if (isRegistering) {
-        // Eğer kayıt oluyorsa:
         const response = await axios.post("http://localhost:8080/api/auth/register", formData);
-        login(response.data); // backend'den dönen kullanıcı verisi
+        login(response.data);
+        localStorage.setItem("user", JSON.stringify(response.data));
       } else {
-        // Eğer giriş yapıyorsa:
         const { email, password } = formData;
         const response = await axios.post("http://localhost:8080/api/auth/login", { email, password });
-        login(response.data); // backend'den dönen kullanıcı verisi
+        login(response.data);
+        localStorage.setItem("user", JSON.stringify(response.data));
       }
     } catch (error) {
       console.error("İşlem hatası:", error);
       alert("Bir hata oluştu. Lütfen bilgilerinizi kontrol edin.");
     }
   };
+  
 
   return (
     <main className="profile-wrapper">
