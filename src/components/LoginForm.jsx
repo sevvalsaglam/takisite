@@ -23,16 +23,12 @@ function LoginForm() {
     e.preventDefault();
 
     try {
-      // API'ye POST isteği atıyoruz
       const response = await axios.post("http://localhost:8080/api/auth/register", formData);
 
-      // Response'dan kullanıcı ve token bilgilerini al
       const { user, token } = response.data;
 
-      // AuthContext ile kullanıcı ve token'ı kaydet
       login(user, token);
 
-      // Başarılı kayıt -> Anasayfaya yönlendir
       navigate("/");
     } catch (error) {
       console.error("Kayıt olurken hata:", error);
