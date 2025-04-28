@@ -1,63 +1,55 @@
 import { createContext, useState, useContext, useEffect } from "react";
+import axios from "axios";
+import { useAuth } from "./AuthContext"; // AuthContext'ten token almak için
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState(() => {
-    const storedCart = localStorage.getItem("cart");
-    return storedCart ? JSON.parse(storedCart) : [];
-  });
+  const [cart, setCart] = useState([]);
+  const { token } = useAuth();
 
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
-
-  const addToCart = (product) => {
-    setCart((prevCart) => {
-      const existingProduct = prevCart.find((item) => item.id === product.id);
-      if (existingProduct) {
-        return prevCart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      } else {
-        return [...prevCart, { ...product, quantity: 1 }];
+    const fetchCart = async () => {
+      if (token) {
+        try {
+          const response = await axios.get("http://localhost:8080/api/cart", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setCart(response.data); // API'den gelen cart bilgisini state'e al
+        } catch (error) {
+          console.error("Sepeti getirirken hata:", error);
+        }
       }
-    });
-  };
+    };
 
-  const removeFromCart = (id) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
-  };
+    fetchCart();
+  }, [token]);
 
-  const updateQuantity = (id, amount) => {
-    setCart((prevCart) =>
-      prevCart
-        .map((item) =>
-          item.id === id
-            ? { ...item, quantity: Math.max(1, item.quantity + amount) }
-            : item
-        )
-        .filter((item) => item.quantity > 0)
-    );
-  };
+  const addToCart = async (product) => {
+    if (!token) {
+      console.error("Sepete eklemek için giriş yapmanız gerekiyor.");
+      return;
+    }
 
-  const clearCart = () => {
-    setCart([]);
-    localStorage.removeItem("cart");
+    try {
+      const response = await axios.post("http://localhost:8080/api/cart", 
+        { productId: product.id, quantity: 1 }, 
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setCart(response.data); // Backend'den gelen yeni cart bilgisini kullan
+    } catch (error) {
+      console.error("Ürün sepete eklenemedi:", error);
+    }
   };
 
   return (
-    <CartContext.Provider
-      value={{
-        cart,
-        addToCart,
-        removeFromCart,
-        updateQuantity,
-        clearCart, 
-      }}
-    >
+    <CartContext.Provider value={{ cart, addToCart }}>
       {children}
     </CartContext.Provider>
   );

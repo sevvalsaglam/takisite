@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../context/AuthContext"; // doğru path ile import et
 
 function LoginForm() {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ function LoginForm() {
   });
 
   const navigate = useNavigate();
+  const { login } = useAuth(); // AuthContext'ten login fonksiyonunu alıyoruz
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,8 +26,11 @@ function LoginForm() {
       // API'ye POST isteği atıyoruz
       const response = await axios.post("http://localhost:8080/api/auth/register", formData);
 
-      // Başarılı kayıt olursa kullanıcıyı localStorage'a kaydediyoruz
-      localStorage.setItem("user", JSON.stringify(response.data));
+      // Response'dan kullanıcı ve token bilgilerini al
+      const { user, token } = response.data;
+
+      // AuthContext ile kullanıcı ve token'ı kaydet
+      login(user, token);
 
       // Başarılı kayıt -> Anasayfaya yönlendir
       navigate("/");

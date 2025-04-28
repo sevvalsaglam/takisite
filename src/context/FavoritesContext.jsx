@@ -1,26 +1,51 @@
 import { createContext, useState, useContext, useEffect } from "react";
+import axios from "axios";
+import { useAuth } from "./AuthContext"; // AuthContext'ten token almak için
 
 const FavoritesContext = createContext();
 
 export const FavoritesProvider = ({ children }) => {
-  const [favorites, setFavorites] = useState(() => {
-    const stored = localStorage.getItem("favorites");
-    return stored ? JSON.parse(stored) : [];
-  });
+  const [favorites, setFavorites] = useState([]);
+  const { token } = useAuth(); // Kullanıcı token'ı
 
   useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  }, [favorites]);
-
-  const toggleFavorite = (product) => {
-    setFavorites((prevFavorites) => {
-      const isFavorite = prevFavorites.some((item) => item.id === product.id);
-      if (isFavorite) {
-        return prevFavorites.filter((item) => item.id !== product.id);
-      } else {
-        return [...prevFavorites, product];
+    const fetchFavorites = async () => {
+      if (token) {
+        try {
+          const response = await axios.get("http://localhost:8080/api/favorites", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setFavorites(response.data); // API'den gelen favorileri state'e al
+        } catch (error) {
+          console.error("Favorileri getirirken hata:", error);
+        }
       }
-    });
+    };
+
+    fetchFavorites();
+  }, [token]);
+
+  const toggleFavorite = async (product) => {
+    if (!token) {
+      console.error("Favori eklemek için giriş yapmanız gerekiyor.");
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://localhost:8080/api/favorites", 
+        { productId: product.id }, 
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setFavorites(response.data); // Backend'den dönen yeni favori listesini kullan
+    } catch (error) {
+      console.error("Favori eklenemedi:", error);
+    }
   };
 
   return (
