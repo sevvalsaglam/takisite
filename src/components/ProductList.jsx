@@ -7,7 +7,7 @@ function ProductList({ products = [], itemsPerRow = 3 }) {
       style={{
         display: "grid",
         gridTemplateColumns: `repeat(${itemsPerRow}, 1fr)`,
-        gap: "20px", // ürünler arası boşluk eklendi
+        gap: "20px", 
       }}
     >
       {products.map((product) => (

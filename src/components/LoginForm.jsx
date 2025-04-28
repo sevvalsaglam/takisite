@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useAuth } from "../context/AuthContext"; // doğru path ile import et
-
+import { useAuth } from "../context/AuthContext"; 
 function LoginForm() {
   const [formData, setFormData] = useState({
     name: "",
@@ -13,8 +12,7 @@ function LoginForm() {
   });
 
   const navigate = useNavigate();
-  const { login } = useAuth(); // AuthContext'ten login fonksiyonunu alıyoruz
-
+  const { login } = useAuth(); 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };

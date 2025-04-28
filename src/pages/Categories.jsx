@@ -40,7 +40,6 @@ function Categories() {
   const [currentBanner, setCurrentBanner] = useState(0);
   const [sortOption, setSortOption] = useState("default");
 
-  // Ürünleri backend'den al
   useEffect(() => {
     const fetchProducts = async () => {
       try {

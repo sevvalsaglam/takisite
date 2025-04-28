@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useAuth } from "../context/AuthContext"; // <<< Burada AuthContext kullanıyoruz
+import { useAuth } from "../context/AuthContext"; 
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { FaHeart, FaShoppingCart, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";

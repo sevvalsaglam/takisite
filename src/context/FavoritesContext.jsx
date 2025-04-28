@@ -1,12 +1,12 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
-import { useAuth } from "./AuthContext"; // AuthContext'ten token almak için
+import { useAuth } from "./AuthContext"; 
 
 const FavoritesContext = createContext();
 
 export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
-  const { token } = useAuth(); // Kullanıcı token'ı
+  const { token } = useAuth(); 
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -17,7 +17,7 @@ export const FavoritesProvider = ({ children }) => {
               Authorization: `Bearer ${token}`,
             },
           });
-          setFavorites(response.data); // API'den gelen favorileri state'e al
+          setFavorites(response.data); 
         } catch (error) {
           console.error("Favorileri getirirken hata:", error);
         }
@@ -42,7 +42,7 @@ export const FavoritesProvider = ({ children }) => {
           },
         }
       );
-      setFavorites(response.data); // Backend'den dönen yeni favori listesini kullan
+      setFavorites(response.data); 
     } catch (error) {
       console.error("Favori eklenemedi:", error);
     }

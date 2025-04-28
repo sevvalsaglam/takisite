@@ -1,6 +1,6 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
-import { useAuth } from "./AuthContext"; // AuthContext'ten token almak için
+import { useAuth } from "./AuthContext"; 
 
 const CartContext = createContext();
 
@@ -17,7 +17,7 @@ export const CartProvider = ({ children }) => {
               Authorization: `Bearer ${token}`,
             },
           });
-          setCart(response.data); // API'den gelen cart bilgisini state'e al
+          setCart(response.data); 
         } catch (error) {
           console.error("Sepeti getirirken hata:", error);
         }
@@ -42,7 +42,7 @@ export const CartProvider = ({ children }) => {
           },
         }
       );
-      setCart(response.data); // Backend'den gelen yeni cart bilgisini kullan
+      setCart(response.data); 
     } catch (error) {
       console.error("Ürün sepete eklenemedi:", error);
     }

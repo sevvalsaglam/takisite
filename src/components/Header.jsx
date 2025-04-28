@@ -27,10 +27,8 @@ function Header() {
           <span className="logo-text">Takı Dünyası</span>
         </div>
 
-        {/* ✅ Arama Çubuğu */}
         <SearchBar />
 
-        {/* Masaüstü ikonları */}
         <div className="nav-icons desktop-only">
           <Link to="/"><FaHome /></Link>
           <Link to="/profile"><FaUser /></Link>
@@ -46,7 +44,6 @@ function Header() {
           <Link to="/categories"><FaThLarge /></Link>
         </div>
 
-        {/* Mobil menü açma butonu */}
         <button
           className="menu-toggle mobile-only"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -55,7 +52,6 @@ function Header() {
         </button>
       </div>
 
-      {/* Mobil menü */}
       {menuOpen && (
         <nav className="mobile-nav mobile-only">
           <Link to="/" onClick={() => setMenuOpen(false)}>

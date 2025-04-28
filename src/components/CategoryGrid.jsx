@@ -25,7 +25,6 @@ function CategoryGrid() {
       .catch((err) => console.error("Kategori verisi alınamadı:", err));
   }, []);
 
-  // Outlet ürünleri için ürünleri al
   useEffect(() => {
     axios
       .get("http://localhost:8080/api/products")
