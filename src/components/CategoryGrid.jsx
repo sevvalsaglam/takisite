@@ -18,7 +18,6 @@ function CategoryGrid() {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
 
-  // Kategorileri backend'den al
   useEffect(() => {
     axios
       .get("http://localhost:8080/api/categories")
