@@ -1,14 +1,16 @@
 import { useParams } from "react-router-dom";
-import { useAuth } from "../context/AuthContext"; 
+import { useAuth } from "../context/AuthContext";
+import { useFavorites } from "../context/FavoritesContext";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { FaHeart, FaShoppingCart, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
-import ProductList from "../components/ProductList"; 
+import ProductList from "../components/ProductList";
 import "../assets/product-page.css";
 
 function ProductPage() {
   const { id } = useParams();
-  const { user, token } = useAuth(); // user ve token'ı çekiyoruz
+  const { user, token } = useAuth();
+  const { favorites, setFavorites, fetchFavorites } = useFavorites();
   const [product, setProduct] = useState(null);
   const [similarProducts, setSimilarProducts] = useState([]);
 
@@ -19,9 +21,7 @@ function ProductPage() {
         setProduct(res.data);
         fetchSimilarProducts(res.data.category, res.data.id);
       })
-      .catch((err) => {
-        console.error("Ürün alınamadı:", err);
-      });
+      .catch((err) => console.error("Ürün alınamadı:", err));
   }, [id]);
 
   const fetchSimilarProducts = (category, productId) => {
@@ -34,52 +34,45 @@ function ProductPage() {
       .catch((err) => console.error("Benzer ürünler alınamadı:", err));
   };
 
+  const isFavorited = favorites.some((fav) => fav.productId === product?.id);
 
-  const addToFavorites = async () => {
-    if (!user || !token) {
-      alert("Ürünü favorilere eklemek için giriş yapınız.");
-      return;
-    }
+  const toggleFavorite = async () => {
+    if (!user || !token || !product) return;
+
     try {
-      await axios.post(
-        "http://localhost:8080/api/favorites",
-        { productId: product.id },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      alert("Ürün favorilere eklendi!");
-    } catch (error) {
-      console.error("Favori eklenemedi:", error);
-      alert("Bir hata oluştu.");
+      if (isFavorited) {
+        const favToRemove = favorites.find((fav) => fav.productId === product.id);
+        await axios.delete(`http://localhost:8080/api/favorites/${favToRemove.id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setFavorites((prev) => prev.filter((f) => f.productId !== product.id));
+      } else {
+        await axios.post(
+          "http://localhost:8080/api/favorites",
+          { productId: product.id },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        fetchFavorites(); // Favoriler güncellensin
+      }
+    } catch (err) {
+      console.error("Favori işlemi hatası:", err);
     }
   };
-  
 
   const addToCart = async () => {
-    if (!user || !token) {
-      alert("Ürünü sepete eklemek için giriş yapınız.");
-      return;
-    }
+    if (!user || !token || !product) return;
+
     try {
       await axios.post(
         "http://localhost:8080/api/cart",
         { productId: product.id, quantity: 1 },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       alert("Ürün sepete eklendi!");
     } catch (error) {
       console.error("Sepete eklenemedi:", error);
-      alert("Bir hata oluştu.");
     }
   };
-  
 
   const renderStars = () => {
     if (!product) return null;
@@ -107,11 +100,7 @@ function ProductPage() {
 
   return (
     <main className="product-page">
-      <img
-        src={product.image}
-        alt={product.title}
-        className="product-large-image"
-      />
+      <img src={product.image} alt={product.title} className="product-large-image" />
 
       <div className="product-details">
         <h3>{product.category.toUpperCase()}</h3>
@@ -123,7 +112,10 @@ function ProductPage() {
         <span className="price">{product.price} TL</span>
 
         <div className="product-actions">
-          <button className="fav-btn" onClick={addToFavorites}>
+          <button
+            className={`fav-btn ${isFavorited ? "active" : ""}`}
+            onClick={toggleFavorite}
+          >
             <FaHeart />
           </button>
           <button className="cart-btn" onClick={addToCart}>

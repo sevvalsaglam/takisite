@@ -9,34 +9,34 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useFavorites } from "../context/FavoritesContext";
 import axios from "axios";
-import "../assets/product-card.css"; 
+import "../assets/product-card.css";
 
 function ProductCard({ product }) {
   const { user, token } = useAuth();
   const { favorites, setFavorites, fetchFavorites } = useFavorites();
 
-  const isFavorited = favorites.some((fav) => fav.id === product.id);
+  const isFavorited = favorites.some((fav) => fav.productId === product.id);
 
   const toggleFavorite = async () => {
     if (!user || !token) {
-      alert("Favorilere eklemek için giriş yapın.");
+      alert("Favorilere eklemek için giriş yapınız.");
       return;
     }
 
     try {
       if (isFavorited) {
-        const favToRemove = favorites.find((fav) => fav.id === product.id);
-        await axios.delete(`http://localhost:8080/api/favorites/${favToRemove.favoriteId}`, {
+        const favToRemove = favorites.find((fav) => fav.productId === product.id);
+        await axios.delete(`http://localhost:8080/api/favorites/${favToRemove.id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setFavorites((prev) => prev.filter((f) => f.id !== product.id));
+        setFavorites((prev) => prev.filter((f) => f.productId !== product.id));
       } else {
-        const res = await axios.post(
+        await axios.post(
           "http://localhost:8080/api/favorites",
           { productId: product.id },
           { headers: { Authorization: `Bearer ${token}` } }
         );
-        fetchFavorites(); // Listeyi güncelle
+        fetchFavorites(); // Favori listesini güncelle
       }
     } catch (err) {
       console.error("Favori işlemi hatası:", err);
@@ -45,7 +45,7 @@ function ProductCard({ product }) {
 
   const addToCart = async () => {
     if (!user || !token) {
-      alert("Sepete eklemek için giriş yapın.");
+      alert("Sepete eklemek için giriş yapınız.");
       return;
     }
 
@@ -53,9 +53,7 @@ function ProductCard({ product }) {
       await axios.post(
         "http://localhost:8080/api/cart",
         { productId: product.id, quantity: 1 },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       alert("Ürün sepete eklendi!");
     } catch (error) {

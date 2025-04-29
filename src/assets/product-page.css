@@ -125,6 +125,14 @@
 .star.empty {
   color: #ccc;
 }
+.fav-btn {
+  transition: color 0.2s ease;
+}
+
+.fav-btn.active svg {
+  color: red;
+}
+
 
 
 @media (max-width: 768px) {
