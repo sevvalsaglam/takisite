@@ -1,4 +1,5 @@
 import ProductCard from "./ProductCard";
+import "../assets/product-list.css";
 
 function ProductList({ products = [], itemsPerRow = 3 }) {
   return (

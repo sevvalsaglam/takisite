@@ -20,7 +20,7 @@ function Header() {
   return (
     <header className="header">
       <div className="header-inner">
-        {/* Logo */}
+        
         <div className="logo-container">
           <Link to="/">
             <img src="/images/taki-dunyasi-logo-2.png" alt="Takı Dünyası" className="logo" />
