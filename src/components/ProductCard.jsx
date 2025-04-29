@@ -15,7 +15,10 @@ function ProductCard({ product }) {
   const { user, token } = useAuth();
   const { favorites, setFavorites, fetchFavorites } = useFavorites();
 
-  const isFavorited = favorites.some((fav) => fav.productId === product.id);
+  // Gerçek ürün ID’si: ProductPage ve Favorites için uyumlu
+  const productId = product.productId || product.id;
+
+  const isFavorited = favorites.some((fav) => fav.productId === productId);
 
   const toggleFavorite = async () => {
     if (!user || !token) {
@@ -25,18 +28,18 @@ function ProductCard({ product }) {
 
     try {
       if (isFavorited) {
-        const favToRemove = favorites.find((fav) => fav.productId === product.id);
+        const favToRemove = favorites.find((fav) => fav.productId === productId);
         await axios.delete(`http://localhost:8080/api/favorites/${favToRemove.id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setFavorites((prev) => prev.filter((f) => f.productId !== product.id));
+        fetchFavorites();
       } else {
         await axios.post(
           "http://localhost:8080/api/favorites",
-          { productId: product.id },
+          { productId },
           { headers: { Authorization: `Bearer ${token}` } }
         );
-        fetchFavorites(); // Favori listesini güncelle
+        fetchFavorites();
       }
     } catch (err) {
       console.error("Favori işlemi hatası:", err);
@@ -52,7 +55,7 @@ function ProductCard({ product }) {
     try {
       await axios.post(
         "http://localhost:8080/api/cart",
-        { productId: product.id, quantity: 1 },
+        { productId, quantity: 1 },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       alert("Ürün sepete eklendi!");
@@ -74,7 +77,7 @@ function ProductCard({ product }) {
 
   return (
     <div className="product-card">
-      <Link to={`/product/${product.id}`}>
+      <Link to={`/product/${productId}`}>
         <img src={product.image} alt={product.title} className="product-image" />
       </Link>
 
@@ -87,7 +90,10 @@ function ProductCard({ product }) {
       </div>
 
       <div className="product-actions">
-        <button className={`fav-btn ${isFavorited ? "active" : ""}`} onClick={toggleFavorite}>
+        <button
+          className={`fav-btn ${isFavorited ? "active" : ""}`}
+          onClick={toggleFavorite}
+        >
           <FaHeart />
         </button>
         <button className="cart-btn" onClick={addToCart}>
@@ -95,7 +101,7 @@ function ProductCard({ product }) {
         </button>
       </div>
 
-      <Link to={`/product/${product.id}`} className="details-btn">
+      <Link to={`/product/${productId}`} className="details-btn">
         Ürüne Git
       </Link>
     </div>

@@ -3,7 +3,13 @@ import { useAuth } from "../context/AuthContext";
 import { useFavorites } from "../context/FavoritesContext";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { FaHeart, FaShoppingCart, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import {
+  FaHeart,
+  FaShoppingCart,
+  FaStar,
+  FaStarHalfAlt,
+  FaRegStar,
+} from "react-icons/fa";
 import ProductList from "../components/ProductList";
 import "../assets/product-page.css";
 
@@ -52,7 +58,7 @@ function ProductPage() {
           { productId: product.id },
           { headers: { Authorization: `Bearer ${token}` } }
         );
-        fetchFavorites(); // Favoriler güncellensin
+        fetchFavorites();
       }
     } catch (err) {
       console.error("Favori işlemi hatası:", err);
@@ -115,6 +121,7 @@ function ProductPage() {
           <button
             className={`fav-btn ${isFavorited ? "active" : ""}`}
             onClick={toggleFavorite}
+            title={isFavorited ? "Favorilerden çıkar" : "Favorilere ekle"}
           >
             <FaHeart />
           </button>

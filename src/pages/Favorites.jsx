@@ -1,36 +1,24 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { useAuth } from "../context/AuthContext"; // ✅ bunu ekledik
+import { useAuth } from "../context/AuthContext";
+import { useFavorites } from "../context/FavoritesContext";
 import ProductList from "../components/ProductList";
 import "../assets/favorites.css";
 
 function Favorites() {
-  const [favorites, setFavorites] = useState([]);
+  const { token } = useAuth();
+  const { favorites, fetchFavorites } = useFavorites();
   const [loading, setLoading] = useState(true);
 
-  const { user, token } = useAuth(); // ✅ token buradan alınacak
-
   useEffect(() => {
-    if (!token) {
-      setLoading(false);
-      return;
-    }
-
-    const fetchFavorites = async () => {
-      try {
-        const response = await axios.get("http://localhost:8080/api/favorites", {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        
-        setFavorites(response.data);
-      } catch (error) {
-        console.error("Favoriler alınırken hata oluştu:", error);
-      } finally {
-        setLoading(false);
+    const loadFavorites = async () => {
+      setLoading(true);
+      if (token) {
+        await fetchFavorites();
       }
+      setLoading(false);
     };
 
-    fetchFavorites();
+    loadFavorites();
   }, [token]);
 
   return (

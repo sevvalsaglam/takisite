@@ -122,6 +122,6 @@
   transition: color 0.2s ease;
 }
 
-.fav-btn.active svg {
+.fav-btn.active {
   color: red;
 }
