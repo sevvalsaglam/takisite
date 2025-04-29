@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useAuth } from "../context/AuthContext"; // ✅ bunu ekledik
 import ProductList from "../components/ProductList";
 import "../assets/favorites.css";
 
@@ -7,19 +8,20 @@ function Favorites() {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const user = JSON.parse(localStorage.getItem("user"));
-  const userEmail = user?.email;
+  const { user, token } = useAuth(); // ✅ token buradan alınacak
 
   useEffect(() => {
-    if (!userEmail) {
+    if (!token) {
       setLoading(false);
       return;
     }
 
     const fetchFavorites = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/users/{email}/favorites
-        `);
+        const response = await axios.get("http://localhost:8080/api/favorites", {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        
         setFavorites(response.data);
       } catch (error) {
         console.error("Favoriler alınırken hata oluştu:", error);
@@ -29,7 +31,7 @@ function Favorites() {
     };
 
     fetchFavorites();
-  }, [userEmail]);
+  }, [token]);
 
   return (
     <main className="favorites-page">

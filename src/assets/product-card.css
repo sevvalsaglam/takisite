@@ -117,3 +117,11 @@
 .details-btn:hover {
   background: #1e2534;
 }
+
+.fav-btn {
+  transition: color 0.2s ease;
+}
+
+.fav-btn.active svg {
+  color: red;
+}

@@ -6,50 +6,27 @@ const FavoritesContext = createContext();
 
 export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
-  const { token } = useAuth(); 
+  const { token } = useAuth();
 
-  useEffect(() => {
-    const fetchFavorites = async () => {
-      if (token) {
-        try {
-          const response = await axios.get("http://localhost:8080/api/favorites", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          setFavorites(response.data); 
-        } catch (error) {
-          console.error("Favorileri getirirken hata:", error);
-        }
+  const fetchFavorites = async () => {
+    if (token) {
+      try {
+        const response = await axios.get("http://localhost:8080/api/favorites", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setFavorites(response.data);
+      } catch (error) {
+        console.error("Favorileri getirirken hata:", error);
       }
-    };
-
-    fetchFavorites();
-  }, [token]);
-
-  const toggleFavorite = async (product) => {
-    if (!token) {
-      console.error("Favori eklemek için giriş yapmanız gerekiyor.");
-      return;
-    }
-
-    try {
-      const response = await axios.post("http://localhost:8080/api/favorites", 
-        { productId: product.id }, 
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setFavorites(response.data); 
-    } catch (error) {
-      console.error("Favori eklenemedi:", error);
     }
   };
 
+  useEffect(() => {
+    fetchFavorites();
+  }, [token]);
+
   return (
-    <FavoritesContext.Provider value={{ favorites, toggleFavorite }}>
+    <FavoritesContext.Provider value={{ favorites, setFavorites, fetchFavorites }}>
       {children}
     </FavoritesContext.Provider>
   );

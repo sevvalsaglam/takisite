@@ -1,56 +1,75 @@
-import { FaHeart, FaShoppingCart, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import {
+  FaHeart,
+  FaShoppingCart,
+  FaStar,
+  FaStarHalfAlt,
+  FaRegStar,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import axios from 'axios';
+import { useFavorites } from "../context/FavoritesContext";
+import axios from "axios";
+import "../assets/product-card.css"; 
 
 function ProductCard({ product }) {
-  const { user } = useAuth(); 
+  const { user, token } = useAuth();
+  const { favorites, setFavorites, fetchFavorites } = useFavorites();
 
-  const addToFavorites = async () => {
-    if (!user) {
-      alert("Ürünü favorilere eklemek için giriş yapınız.");
+  const isFavorited = favorites.some((fav) => fav.id === product.id);
+
+  const toggleFavorite = async () => {
+    if (!user || !token) {
+      alert("Favorilere eklemek için giriş yapın.");
       return;
     }
+
     try {
-      await axios.post("http://localhost:8080/api/favorites", {
-        user: { email: user.email },
-        product: { id: product.id }
-      });
-      alert("Ürün favorilere eklendi!");
-    } catch (error) {
-      console.error("Favori eklenemedi:", error);
-      alert("Bir hata oluştu.");
+      if (isFavorited) {
+        const favToRemove = favorites.find((fav) => fav.id === product.id);
+        await axios.delete(`http://localhost:8080/api/favorites/${favToRemove.favoriteId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setFavorites((prev) => prev.filter((f) => f.id !== product.id));
+      } else {
+        const res = await axios.post(
+          "http://localhost:8080/api/favorites",
+          { productId: product.id },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        fetchFavorites(); // Listeyi güncelle
+      }
+    } catch (err) {
+      console.error("Favori işlemi hatası:", err);
     }
   };
 
   const addToCart = async () => {
-    if (!user) {
-      alert("Ürünü sepete eklemek için giriş yapınız.");
+    if (!user || !token) {
+      alert("Sepete eklemek için giriş yapın.");
       return;
     }
+
     try {
-      await axios.post("http://localhost:8080/api/cart", {
-        user: { email: user.email },
-        product: { id: product.id },
-        quantity: 1
-      });
+      await axios.post(
+        "http://localhost:8080/api/cart",
+        { productId: product.id, quantity: 1 },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       alert("Ürün sepete eklendi!");
     } catch (error) {
       console.error("Sepete eklenemedi:", error);
-      alert("Bir hata oluştu.");
     }
   };
 
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
-      if (rating >= i) {
-        stars.push(<FaStar key={i} className="star full" />);
-      } else if (rating >= i - 0.5) {
+      if (rating >= i) stars.push(<FaStar key={i} className="star full" />);
+      else if (rating >= i - 0.5)
         stars.push(<FaStarHalfAlt key={i} className="star half" />);
-      } else {
-        stars.push(<FaRegStar key={i} className="star empty" />);
-      }
+      else stars.push(<FaRegStar key={i} className="star empty" />);
     }
     return stars;
   };
@@ -70,7 +89,7 @@ function ProductCard({ product }) {
       </div>
 
       <div className="product-actions">
-        <button className="fav-btn" onClick={addToFavorites}>
+        <button className={`fav-btn ${isFavorited ? "active" : ""}`} onClick={toggleFavorite}>
           <FaHeart />
         </button>
         <button className="cart-btn" onClick={addToCart}>

@@ -8,7 +8,7 @@ import "../assets/product-page.css";
 
 function ProductPage() {
   const { id } = useParams();
-  const { user } = useAuth();
+  const { user, token } = useAuth(); // user ve token'ı çekiyoruz
   const [product, setProduct] = useState(null);
   const [similarProducts, setSimilarProducts] = useState([]);
 
@@ -34,40 +34,52 @@ function ProductPage() {
       .catch((err) => console.error("Benzer ürünler alınamadı:", err));
   };
 
+
   const addToFavorites = async () => {
-    if (!user) {
+    if (!user || !token) {
       alert("Ürünü favorilere eklemek için giriş yapınız.");
       return;
     }
     try {
-      await axios.post("http://localhost:8080/api/favorites", {
-        user: { email: user.email },
-        product: { id: product.id }
-      });
+      await axios.post(
+        "http://localhost:8080/api/favorites",
+        { productId: product.id },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       alert("Ürün favorilere eklendi!");
     } catch (error) {
       console.error("Favori eklenemedi:", error);
       alert("Bir hata oluştu.");
     }
   };
+  
 
   const addToCart = async () => {
-    if (!user) {
+    if (!user || !token) {
       alert("Ürünü sepete eklemek için giriş yapınız.");
       return;
     }
     try {
-      await axios.post("http://localhost:8080/api/cart", {
-        user: { email: user.email },
-        product: { id: product.id },
-        quantity: 1
-      });
+      await axios.post(
+        "http://localhost:8080/api/cart",
+        { productId: product.id, quantity: 1 },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       alert("Ürün sepete eklendi!");
     } catch (error) {
       console.error("Sepete eklenemedi:", error);
       alert("Bir hata oluştu.");
     }
   };
+  
 
   const renderStars = () => {
     if (!product) return null;
