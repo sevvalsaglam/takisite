@@ -1,0 +1,30 @@
+/* src/assets/product-list.css */
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  /* Geniş ekranlar için maksimum 4 ürün */
+  @media (min-width: 1024px) {
+    .product-list {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  /* Tablet görünümde 3 ürün */
+  @media (max-width: 1023px) and (min-width: 769px) {
+    .product-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  /* Mobil görünümde 2 ürün */
+  @media (max-width: 768px) {
+    .product-list {
+      width: 100%;
+    }
+  }
+  
