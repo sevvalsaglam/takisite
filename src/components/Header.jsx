@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import { useCart } from "../context/CartContext";
 import SearchBar from "./SearchBar";
+import "../assets/header.css";
 
 function Header() {
   const { cart } = useCart();

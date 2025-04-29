@@ -4,6 +4,8 @@ import Slider from "../components/Slider";
 import ProductList from "../components/ProductList";
 import CategoryGrid from "../components/CategoryGrid";
 import VideoBanner from "../components/VideoBanner";
+import "../assets/homepage.css";
+
 
 const firstSliderImages = [
   "/images/banner-foto-3.jpg",
